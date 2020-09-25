@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:Todoey/widgets/menu.dart';
 import 'package:Todoey/widgets/tasks_list.dart';
 import 'package:Todoey/screens/add_task.dart';
 import 'package:Todoey/models/task_data.dart';
+import 'package:path_provider/path_provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,6 +29,9 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    getApplicationDocumentsDirectory().then((Directory directory) {
+      File('${directory.path}/tasks.json').readAsString().then((value) => Provider.of<TaskData>(context, listen: false).loadTasks(value));
+    });
     _controller = AnimationController(vsync: this, duration: duration);
     _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(_controller);
     _menuScaleAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
@@ -41,6 +46,7 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     _controller.dispose();
+    Provider.of<TaskData>(context, listen: false).saveTasks();
     super.dispose();
   }
 
