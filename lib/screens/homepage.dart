@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 250);
@@ -30,7 +30,8 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     getApplicationDocumentsDirectory().then((Directory directory) {
-      File('${directory.path}/tasks.json').readAsString().then((value) => Provider.of<TaskData>(context, listen: false).loadTasks(value));
+      File('${directory.path}/tasks.json').readAsString().then((value) =>
+          Provider.of<TaskData>(context, listen: false).loadTasks(value));
     });
     _controller = AnimationController(vsync: this, duration: duration);
     _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(_controller);
@@ -41,12 +42,20 @@ class _HomePageState extends State<HomePage>
     _homeSlideAnimation =
         Tween<Offset>(begin: Offset(0, 0), end: Offset(0.6, 0)).animate(
             CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.inactive)
+      Provider.of<TaskData>(context, listen: false).saveTasks();
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    Provider.of<TaskData>(context, listen: false).saveTasks();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -100,9 +109,8 @@ class _HomePageState extends State<HomePage>
                                 Card(
                                   clipBehavior: Clip.antiAlias,
                                   elevation: 8.0,
+                                  color: Theme.of(context).canvasColor,
                                   shape: SquircleBorder(
-                                      side: BorderSide(
-                                          color: Colors.blueAccent, width: 1.0),
                                       superRadius: 5.0),
                                   child: Container(
                                     height: 55.0,
@@ -117,8 +125,11 @@ class _HomePageState extends State<HomePage>
                                           isCollapsed = !isCollapsed;
                                         });
                                       },
-                                      child: Icon(Icons.menu,
-                                          size: 30.0, color: Colors.blueAccent),
+                                      child: Center(
+                                        child: AnimatedIcon(icon: AnimatedIcons.menu_arrow,
+                                        progress: Tween<double>(begin: 0, end: 1).animate(_controller),
+                                            size: 30.0, color: Colors.blueAccent),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -179,7 +190,7 @@ class _HomePageState extends State<HomePage>
                           },
                           backgroundColor: Colors.blueAccent,
                           splashColor: Colors.blue,
-                          child: Icon(Icons.add),
+                          child: Icon(Icons.add, size: 35.0),
                         ),
                       ),
                     ],

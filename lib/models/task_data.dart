@@ -17,7 +17,6 @@ class TaskData extends ChangeNotifier {
   }
 
   void loadTasks(String res) {
-    print(res);
     var taskObj = jsonDecode(res) as List;
     _tasks = taskObj.map((i) => Task.fromJson(i)).toList();
     notifyListeners();
@@ -25,26 +24,23 @@ class TaskData extends ChangeNotifier {
 
   void saveTasks() {
     getApplicationDocumentsDirectory().then((Directory directory) {
-      print(directory.path);
-      File('${directory.path}/tasks.json').writeAsStringSync(jsonEncode(_tasks));
+      File('${directory.path}/tasks.json')
+          .writeAsStringSync(jsonEncode(_tasks));
     });
   }
 
   void addTask(String newTaskTitle) {
     _tasks.add(Task(name: newTaskTitle));
-    saveTasks();
     notifyListeners();
   }
 
   void updateTask(Task task) {
     task.toggleDone();
-    saveTasks();
     notifyListeners();
   }
 
   void deleteTask(Task task) {
     _tasks.remove(task);
-    saveTasks();
     notifyListeners();
   }
 }
