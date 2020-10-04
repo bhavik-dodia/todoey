@@ -4,7 +4,6 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationHelper {
-
   NotificationHelper() {
     tz.initializeTimeZones();
     _configureLocalTimeZone();
@@ -23,7 +22,8 @@ class NotificationHelper {
     tz.setLocalLocation(tz.getLocation(timeZoneName));
   }
 
-  Future<void> _showNotificationWithDefaultSound(int id, String subtitle, int time) async {
+  Future<void> _showNotificationWithDefaultSound(
+      int id, String subtitle, int time) async {
     var platformChannelSpecifics = NotificationDetails(
         android: AndroidNotificationDetails(
           'id1',
