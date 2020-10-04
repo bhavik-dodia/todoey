@@ -31,6 +31,7 @@ class _TasksListState extends State<TasksList> {
                 itemCount: taskData.taskCount,
                 itemBuilder: (contex, index) {
                   final task = taskData.tasks[index];
+                  // NotificationHelper().sendNotification(index, task.name, (index+1)*3);
                   return TaskTile(
                     taskTitle: task.name,
                     isChecked: task.isDone,

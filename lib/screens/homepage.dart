@@ -68,10 +68,12 @@ class _HomePageState extends State<HomePage>
       body: Stack(
         children: [
           Menu(
-              slideAnimation: _menuSlideAnimation,
-              menuScaleAnimation: _menuScaleAnimation),
+            slideAnimation: _menuSlideAnimation,
+            menuScaleAnimation: _menuScaleAnimation,
+          ),
           GestureDetector(
-            onPanUpdate: (details) {
+            onVerticalDragUpdate: (details) {},
+            onHorizontalDragUpdate: (details) {
               if (details.delta.dx > 0)
                 setState(() {
                   if (isCollapsed) _controller.forward();
@@ -110,8 +112,7 @@ class _HomePageState extends State<HomePage>
                                   clipBehavior: Clip.antiAlias,
                                   elevation: 8.0,
                                   color: Theme.of(context).canvasColor,
-                                  shape: SquircleBorder(
-                                      superRadius: 5.0),
+                                  shape: SquircleBorder(superRadius: 5.0),
                                   child: Container(
                                     height: 55.0,
                                     width: 55.0,
@@ -126,9 +127,13 @@ class _HomePageState extends State<HomePage>
                                         });
                                       },
                                       child: Center(
-                                        child: AnimatedIcon(icon: AnimatedIcons.menu_arrow,
-                                        progress: Tween<double>(begin: 0, end: 1).animate(_controller),
-                                            size: 30.0, color: Colors.blueAccent),
+                                        child: AnimatedIcon(
+                                            icon: AnimatedIcons.menu_arrow,
+                                            progress:
+                                                Tween<double>(begin: 0, end: 1)
+                                                    .animate(_controller),
+                                            size: 30.0,
+                                            color: Colors.blueAccent),
                                       ),
                                     ),
                                   ),
