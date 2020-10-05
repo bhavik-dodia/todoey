@@ -43,7 +43,6 @@ class Menu extends StatelessWidget {
                   ),
                 ),
               ),
-              // Divider(),
               ListTile(
                 leading: Icon(Icons.list),
                 title: Text(
@@ -51,7 +50,6 @@ class Menu extends StatelessWidget {
                   style: GoogleFonts.merienda(fontSize: 18.0),
                 ),
               ),
-              // Divider(),
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text(
@@ -59,7 +57,6 @@ class Menu extends StatelessWidget {
                   style: GoogleFonts.merienda(fontSize: 18.0),
                 ),
               ),
-              // Divider(),
               ListTile(
                 leading: Icon(Icons.people),
                 title: Text(

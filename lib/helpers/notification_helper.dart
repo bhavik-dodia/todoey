@@ -10,7 +10,7 @@ class NotificationHelper {
     _configureLocalTimeZone();
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/notification_icon'),
+        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
         iOS: IOSInitializationSettings()));
   }
 
@@ -27,17 +27,19 @@ class NotificationHelper {
       int id, String subtitle, int time) async {
     var platformChannelSpecifics = NotificationDetails(
         android: AndroidNotificationDetails(
-          'id1',
+          'id',
           'notification',
-          'tasknotification',
+          'task notification',
           importance: Importance.max,
           priority: Priority.max,
           category: 'CATEGORY_REMINDER',
-//          largeIcon: DrawableResourceAndroidBitmap('ic_launcher'),
+          icon: 'ic_notification',
+          // largeIcon: DrawableResourceAndroidBitmap('ic_launcher'),
           enableLights: true,
           playSound: true,
           channelShowBadge: true,
           enableVibration: true,
+          color: Colors.blueAccent,
           ledColor: Colors.white,
           ledOnMs: 1000,
           ledOffMs: 500,
