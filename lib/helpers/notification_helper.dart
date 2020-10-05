@@ -10,7 +10,7 @@ class NotificationHelper {
     _configureLocalTimeZone();
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.initialize(InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        android: AndroidInitializationSettings('@mipmap/notification_icon'),
         iOS: IOSInitializationSettings()));
   }
 
@@ -33,7 +33,7 @@ class NotificationHelper {
           importance: Importance.max,
           priority: Priority.max,
           category: 'CATEGORY_REMINDER',
-          largeIcon:  DrawableResourceAndroidBitmap('ic_launcher'),
+//          largeIcon: DrawableResourceAndroidBitmap('ic_launcher'),
           enableLights: true,
           playSound: true,
           channelShowBadge: true,
