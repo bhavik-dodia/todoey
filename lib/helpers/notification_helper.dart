@@ -1,29 +1,12 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:Todoey/main.dart';
 
 class NotificationHelper {
-  NotificationHelper() {
-    tz.initializeTimeZones();
-    _configureLocalTimeZone();
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin.initialize(InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-        iOS: IOSInitializationSettings()));
-  }
 
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-  MethodChannel platform = MethodChannel('todoey.flutter.dev/location');
-
-  Future<void> _configureLocalTimeZone() async {
-    tz.initializeTimeZones();
-    final String timeZoneName = await platform.invokeMethod('getTimeZoneName');
-    tz.setLocalLocation(tz.getLocation(timeZoneName));
-  }
-
-  Future<void> _showNotificationWithDefaultSound(
+  Future<void> _showScheduledNotificationWithDefaultSound(
       int id, String subtitle, int time) async {
     var platformChannelSpecifics = NotificationDetails(
         android: AndroidNotificationDetails(
@@ -34,7 +17,7 @@ class NotificationHelper {
           priority: Priority.max,
           category: 'CATEGORY_REMINDER',
           icon: 'ic_notification',
-          // largeIcon: DrawableResourceAndroidBitmap('ic_launcher'),
+          largeIcon: DrawableResourceAndroidBitmap('notification_icon'),
           enableLights: true,
           playSound: true,
           channelShowBadge: true,
@@ -61,6 +44,6 @@ class NotificationHelper {
   }
 
   void sendNotification(int id, String task, int t) {
-    _showNotificationWithDefaultSound(id, task, t);
+    _showScheduledNotificationWithDefaultSound(id, task, t);
   }
 }

@@ -1,9 +1,11 @@
+import 'package:Todoey/screens/task_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:toast/toast.dart';
 import 'package:Todoey/models/task_data.dart';
 import 'package:Todoey/widgets/task_tile.dart';
 import 'package:provider/provider.dart';
+import 'package:animations/animations.dart';
 
 class TasksList extends StatefulWidget {
   @override
@@ -31,17 +33,42 @@ class _TasksListState extends State<TasksList> {
                 itemCount: taskData.taskCount,
                 itemBuilder: (contex, index) {
                   final task = taskData.tasks[index];
-                  // NotificationHelper().sendNotification(index, task.name, index+1);
-                  return TaskTile(
-                    taskTitle: task.name,
-                    isChecked: task.isDone,
-                    toggleCheckbox: (checkboxState) {
-                      taskData.updateTask(task);
+                  return OpenContainer(
+                    closedElevation: 0.0,
+                    closedColor: Theme.of(context).canvasColor,
+                    openColor: Theme.of(context).canvasColor,
+                    transitionType: ContainerTransitionType.fadeThrough,
+                    transitionDuration: const Duration(milliseconds: 500),
+                    closedShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    openBuilder: (contex, closeContainer) {
+                      return TaskDetails(
+                        title: task.name,
+                        description: task.description,
+                        time: task.time,
+                        onBack: closeContainer,
+                        onDelete: () {
+                          taskData.deleteTask(task);
+                          Toast.show('Task removed...', context,
+                              gravity: Toast.BOTTOM);
+                          closeContainer();
+                        },
+                      );
                     },
-                    onLongPress: () {
-                      taskData.deleteTask(task);
-                      Toast.show('Task removed...', context,
-                          gravity: Toast.BOTTOM);
+                    closedBuilder: (contex, openContainer) {
+                      return TaskTile(
+                        taskTitle: task.name,
+                        isChecked: task.isDone,
+                        toggleCheckbox: (checkboxState) {
+                          taskData.updateTask(task);
+                        },
+                        onTap: openContainer,
+                        onLongPress: () {
+                          taskData.deleteTask(task);
+                          Toast.show('Task removed...', context,
+                              gravity: Toast.BOTTOM);
+                        },
+                      );
                     },
                   );
                 });

@@ -165,6 +165,7 @@ class _HomePageState extends State<HomePage>
                           ),
                           Expanded(
                             child: Container(
+                              clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30.0),
@@ -181,11 +182,12 @@ class _HomePageState extends State<HomePage>
                         right: 18.0,
                         child: FloatingActionButton(
                           shape: SquircleBorder(superRadius: 5.0),
-                          tooltip: 'Add new task',
+                          tooltip: 'Add New Task',
                           onPressed: () {
                             showModalBottomSheet(
                                 context: context,
                                 builder: (context) => AddTask(),
+                                clipBehavior: Clip.antiAlias,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(30.0),

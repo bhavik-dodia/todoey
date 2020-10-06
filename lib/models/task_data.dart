@@ -29,8 +29,9 @@ class TaskData extends ChangeNotifier {
     });
   }
 
-  void addTask(String newTaskTitle) {
-    _tasks.add(Task(name: newTaskTitle));
+  void addTask(String newTaskTitle, String newDescription, String time) {
+    _tasks
+        .add(Task(name: newTaskTitle, description: newDescription, time: time));
     notifyListeners();
   }
 

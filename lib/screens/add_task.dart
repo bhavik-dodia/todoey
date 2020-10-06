@@ -13,8 +13,12 @@ class AddTask extends StatefulWidget {
 
 class _AddTaskState extends State<AddTask> {
   String newTaskTitle = '';
+  String newDescription = '';
+  String reminderTime = '';
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
+
+  bool isDesc = false;
 
   var seconds = 0;
 
@@ -54,143 +58,213 @@ class _AddTaskState extends State<AddTask> {
             Duration(hours: selectedTime.hour, minutes: selectedTime.minute));
         seconds = selectedDate.difference(DateTime.now()).inSeconds;
       });
-      print(seconds);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.only(
-            top: 15.0, bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Column(
-          children: [
-            Text(
-              'New Task',
-              style: GoogleFonts.merienda(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+    return ListView(
+      shrinkWrap: true,
+      padding: EdgeInsets.only(
+          top: 15.0,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+          left: 15.0,
+          right: 15.0),
+      children: [
+        Text(
+          'New Task',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.merienda(
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.blueAccent,
+          ),
+        ),
+        TextField(
+          autofocus: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            focusedErrorBorder: InputBorder.none,
+            filled: false,
+            hintText: 'Enter task',
+            hintStyle: GoogleFonts.merienda(
+              fontSize: 20.0,
+            ),
+          ),
+          onChanged: (value) {
+            setState(() {
+              newTaskTitle = value;
+            });
+          },
+          textAlign: TextAlign.center,
+          textCapitalization: TextCapitalization.sentences,
+          style: GoogleFonts.merienda(
+            fontSize: 20.0,
+          ),
+        ),
+        Visibility(
+          visible: isDesc,
+          child: TextField(
+            autofocus: false,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              errorBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              focusedErrorBorder: InputBorder.none,
+              filled: false,
+              hintText: 'Enter task description',
+              hintStyle: GoogleFonts.merienda(
+                fontSize: 18.0,
               ),
             ),
-            TextField(
-              autofocus: true,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                disabledBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                focusedErrorBorder: InputBorder.none,
-                filled: false,
-                hintText: 'Enter task',
-                hintStyle: GoogleFonts.merienda(
-                  fontSize: 20.0,
+            onChanged: (value) {
+              setState(() {
+                newDescription = value;
+              });
+            },
+            textAlign: TextAlign.left,
+            textCapitalization: TextCapitalization.sentences,
+            style: GoogleFonts.merienda(
+              fontSize: 18.0,
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Card(
+                elevation: 0.0,
+                clipBehavior: Clip.antiAlias,
+                shape: SquircleBorder(),
+                color: Colors.blueAccent.withOpacity(0.3),
+                child: IconButton(
+                  tooltip: 'Set Description',
+                  icon: Icon(Icons.description, color: Colors.blueAccent),
+                  highlightColor: Colors.blueAccent.withOpacity(0.4),
+                  splashColor: Colors.blueAccent.withOpacity(0.5),
+                  onPressed: () => setState(() {
+                    isDesc = !isDesc;
+                  }),
                 ),
               ),
-              onChanged: (value) {
-                setState(() {
-                  newTaskTitle = value;
-                });
-              },
-              textAlign: TextAlign.center,
-              textCapitalization: TextCapitalization.sentences,
-              style: GoogleFonts.merienda(
-                fontSize: 20.0,
+            ),
+            Expanded(
+              flex: 1,
+              child: Card(
+                elevation: 0.0,
+                clipBehavior: Clip.antiAlias,
+                shape: SquircleBorder(),
+                color: Colors.blueAccent.withOpacity(0.3),
+                child: IconButton(
+                    tooltip: 'Set Reminder',
+                    icon: Icon(Icons.event, color: Colors.blueAccent),
+                    highlightColor: Colors.blueAccent.withOpacity(0.4),
+                    splashColor: Colors.blueAccent.withOpacity(0.5),
+                    onPressed: () => _selectDate(context)),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Card(
-                    elevation: 0.0,
-                    clipBehavior: Clip.antiAlias,
-                    shape: SquircleBorder(),
-                    color: Colors.blueAccent.withOpacity(0.3),
-                    child: IconButton(
-                        tooltip: 'Set Reminder',
-                        icon: Icon(Icons.event, color: Colors.blueAccent),
-                        highlightColor: Colors.blueAccent.withOpacity(0.4),
-                        splashColor: Colors.blueAccent.withOpacity(0.5),
-                        onPressed: () => _selectDate(context)),
-                  ),
-                  Card(
-                    elevation: 0.0,
-                    clipBehavior: Clip.antiAlias,
-                    shape: SquircleBorder(),
-                    color: Colors.blueAccent.withOpacity(0.3),
-                    child: IconButton(
-                      tooltip: 'Add Task',
-                      icon: Icon(Icons.add, color: Colors.blueAccent),
-                      highlightColor: Colors.blueAccent.withOpacity(0.4),
-                      splashColor: Colors.blueAccent.withOpacity(0.5),
-                      iconSize: 30.0,
-                      onPressed: () {
-                        if (newTaskTitle != null) {
-                          if (seconds > 0) {
-                            Provider.of<TaskData>(context, listen: false)
-                                .addTask(newTaskTitle);
-                            NotificationHelper().sendNotification(
-                                Provider.of<TaskData>(context, listen: false)
-                                        .tasks
-                                        .length +
-                                    1,
-                                newTaskTitle,
-                                seconds);
-                            Toast.show(
-                                'Task added and reminder set successfully...',
-                                context,
-                                gravity: Toast.BOTTOM);
-                            Navigator.of(context).pop();
-                          } else
-                            Toast.show('Please select future time', context,
-                                gravity: Toast.TOP);
-                        } else {
-                          Toast.show('Please enter a task', context,
-                              gravity: Toast.TOP);
-                        }
-                      },
-                    ),
-                  ),
-                  // MaterialButton(
-                  //   onPressed: () {
-                  //     if (newTaskTitle != null) {
-                  //       Provider.of<TaskData>(context, listen: false)
-                  //           .addTask(newTaskTitle);
-                  //       Toast.show('Task added...', context,
-                  //           gravity: Toast.BOTTOM);
-                  //       Navigator.of(context).pop();
-                  //     } else {
-                  //       Toast.show('Please enter a task', context,
-                  //           gravity: Toast.TOP, duration: Toast.LENGTH_SHORT);
-                  //     }
-                  //   },
-                  //   elevation: 0.0,
-                  //   color: Colors.blueAccent.withOpacity(0.3),
-                  //   textColor: Colors.blueAccent,
-                  //   highlightColor: Colors.blueAccent.withOpacity(0.4),
-                  //   splashColor: Colors.blueAccent.withOpacity(0.5),
-                  //   highlightElevation: 0.0,
-                  //   height: 45.0,
-                  //   shape: SquircleBorder(superRadius: 20),
-                  //   child: Text(
-                  //     'Add',
-                  //     style: GoogleFonts.merienda(
-                  //         fontSize: 20.0, fontWeight: FontWeight.w600),
-                  //   ),
-                  // ),
-                ],
-              ),
+            // Card(
+            //   elevation: 0.0,
+            //   clipBehavior: Clip.antiAlias,
+            //   shape: SquircleBorder(),
+            //   color: Colors.blueAccent.withOpacity(0.3),
+            //   child: IconButton(
+            //     tooltip: 'Add Task',
+            //     icon: Icon(Icons.add, color: Colors.blueAccent),
+            //     highlightColor: Colors.blueAccent.withOpacity(0.4),
+            //     splashColor: Colors.blueAccent.withOpacity(0.5),
+            //     iconSize: 30.0,
+            //     onPressed: () {
+            //       if (newTaskTitle != null) {
+            //         if (seconds > 0) {
+            //           NotificationHelper().sendNotification(
+            //               Provider.of<TaskData>(context, listen: false)
+            //                       .tasks
+            //                       .length +
+            //                   1,
+            //               newTaskTitle,
+            //               seconds);
+            //           Toast.show('Reminder set successfully...', context,
+            //               backgroundColor: Colors.white,
+            //               textColor: Colors.black,
+            //               gravity: Toast.TOP);
+            //           reminderTime = selectedDate.toString();
+            //         }
+            //         Provider.of<TaskData>(context, listen: false).addTask(
+            //             newTaskTitle, newDescription, reminderTime);
+            //         Toast.show('Task added...', context,
+            //             backgroundColor: Colors.white,
+            //             textColor: Colors.black,
+            //             gravity: Toast.BOTTOM);
+            //         Navigator.of(context).pop();
+            //       } else {
+            //         Toast.show('Please enter a task', context,
+            //             backgroundColor: Colors.white,
+            //             textColor: Colors.black,
+            //             gravity: Toast.TOP);
+            //       }
+            //     },
+            //   ),
+            // ),
+            Expanded(
+              flex: 2,
+              child: SizedBox(),
             ),
-            SizedBox(
-              height: 15.0,
+            Expanded(
+              flex: 2,
+              child: MaterialButton(
+                onPressed: () {
+                  if (newTaskTitle != null) {
+                    if (seconds > 0) {
+                      NotificationHelper().sendNotification(
+                          Provider.of<TaskData>(context, listen: false)
+                                  .tasks
+                                  .length +
+                              1,
+                          newTaskTitle,
+                          seconds);
+                      Toast.show('Reminder set successfully...', context,
+                          gravity: Toast.TOP);
+                      reminderTime = selectedDate.toString();
+                    }
+                    Provider.of<TaskData>(context, listen: false)
+                        .addTask(newTaskTitle, newDescription, reminderTime);
+                    Toast.show('Task added...', context, gravity: Toast.BOTTOM);
+                    Navigator.of(context).pop();
+                  } else {
+                    Toast.show('Please enter a task', context,
+                        gravity: Toast.TOP);
+                  }
+                },
+                elevation: 0.0,
+                color: Colors.blueAccent.withOpacity(0.3),
+                textColor: Colors.blueAccent,
+                highlightColor: Colors.blueAccent.withOpacity(0.4),
+                splashColor: Colors.blueAccent.withOpacity(0.5),
+                highlightElevation: 0.0,
+                height: 55.0,
+                shape: SquircleBorder(superRadius: 20),
+                child: Text(
+                  'Add',
+                  style: GoogleFonts.merienda(
+                      fontSize: 20.0, fontWeight: FontWeight.w600),
+                ),
+              ),
             ),
           ],
         ),
-      ),
+        SizedBox(
+          height: 15.0,
+        ),
+      ],
     );
   }
 }

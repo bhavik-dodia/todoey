@@ -30,16 +30,26 @@ class Menu extends StatelessWidget {
                 width: 0.5 * MediaQuery.of(context).size.width,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent.withOpacity(0.3),
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(30.0), bottomRight: Radius.circular(30.0))
-                ),
+                    color: Colors.blueAccent.withOpacity(0.3),
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30.0),
+                        bottomRight: Radius.circular(30.0))),
                 child: ListTile(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(30.0), bottomRight: Radius.circular(30.0))),
-                  onTap: (){},
-                  leading: Icon(Icons.home, color: Colors.blueAccent,),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(30.0),
+                          bottomRight: Radius.circular(30.0))),
+                  onTap: () {},
+                  leading: Icon(
+                    Icons.home,
+                    color: Colors.blueAccent,
+                  ),
                   title: Text(
                     'Home',
-                    style: GoogleFonts.merienda(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.blueAccent),
+                    style: GoogleFonts.merienda(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent),
                   ),
                 ),
               ),

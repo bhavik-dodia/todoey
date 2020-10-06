@@ -40,7 +40,7 @@
                 android:resource="@drawable/launch_background" />
             <!-- <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
-                android:resource="@drawable/ic_notification" /> -->
+                android:resource="@drawable/ic_launcher" /> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
