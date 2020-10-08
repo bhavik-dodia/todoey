@@ -42,13 +42,14 @@ class _HomePageState extends State<HomePage>
     _fabController = AnimationController(vsync: this, duration: duration);
     _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(_controller);
     _menuScaleAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
-    _fabFadeAnimation = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _fabController, curve: Curves.easeInOutBack,));
+    _fabFadeAnimation = Tween<double>(begin: 1, end: 0).animate(
+        CurvedAnimation(parent: _fabController, curve: Curves.easeInBack));
     _menuSlideAnimation =
         Tween<Offset>(begin: Offset(-0.5, 0), end: Offset(0, 0))
             .animate(_controller);
     _homeSlideAnimation =
         Tween<Offset>(begin: Offset(0, 0), end: Offset(0.6, 0)).animate(
-            CurvedAnimation(parent: _controller, curve: Curves.easeInOutBack));
+            CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -67,6 +68,16 @@ class _HomePageState extends State<HomePage>
     super.dispose();
   }
 
+  manageDrawer() {
+    setState(() {
+      if (isCollapsed)
+        _controller.forward();
+      else
+        _controller.reverse();
+      isCollapsed = !isCollapsed;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -78,6 +89,7 @@ class _HomePageState extends State<HomePage>
           Menu(
             slideAnimation: _menuSlideAnimation,
             menuScaleAnimation: _menuScaleAnimation,
+            manageDrawer: manageDrawer,
           ),
           GestureDetector(
             onVerticalDragUpdate: (details) {},
@@ -125,15 +137,7 @@ class _HomePageState extends State<HomePage>
                                     height: 55.0,
                                     width: 55.0,
                                     child: InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          if (isCollapsed)
-                                            _controller.forward();
-                                          else
-                                            _controller.reverse();
-                                          isCollapsed = !isCollapsed;
-                                        });
-                                      },
+                                      onTap: manageDrawer,
                                       child: Center(
                                         child: AnimatedIcon(
                                             icon: AnimatedIcons.menu_arrow,

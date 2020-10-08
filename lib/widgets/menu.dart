@@ -1,12 +1,16 @@
+import 'package:Todoey/screens/about_page.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({
-    Key key,
-    @required Animation<Offset> slideAnimation,
-    @required Animation<double> menuScaleAnimation,
-  })  : _slideAnimation = slideAnimation,
+  final Function manageDrawer;
+  const Menu(
+      {Key key,
+      @required Animation<Offset> slideAnimation,
+      @required Animation<double> menuScaleAnimation,
+      this.manageDrawer})
+      : _slideAnimation = slideAnimation,
         _menuScaleAnimation = menuScaleAnimation,
         super(key: key);
 
@@ -39,9 +43,9 @@ class Menu extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(30.0),
                           bottomRight: Radius.circular(30.0))),
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.home,
+                  onTap: manageDrawer,
+                  leading: FaIcon(
+                    FontAwesomeIcons.home,
                     color: Colors.blueAccent,
                   ),
                   title: Text(
@@ -54,26 +58,39 @@ class Menu extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.list),
+                leading: FaIcon(FontAwesomeIcons.listAlt),
                 title: Text(
                   'Tasks',
                   style: GoogleFonts.merienda(fontSize: 18.0),
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.settings),
+                leading: FaIcon(FontAwesomeIcons.tools),
                 title: Text(
                   'Settings',
                   style: GoogleFonts.merienda(fontSize: 18.0),
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.people),
-                title: Text(
-                  'About',
-                  style: GoogleFonts.merienda(fontSize: 18.0),
-                ),
-              ),
+                  leading: FaIcon(FontAwesomeIcons.infoCircle),
+                  title: Text(
+                    'About',
+                    style: GoogleFonts.merienda(fontSize: 18.0),
+                  ),
+                  onTap: () {
+                    manageDrawer();
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) => AboutPage(),
+                        clipBehavior: Clip.antiAlias,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30.0),
+                              topRight: Radius.circular(30.0)),
+                        ),
+                        isScrollControlled: true,
+                        isDismissible: true);
+                  }),
             ],
           ),
         ),

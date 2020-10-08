@@ -59,13 +59,13 @@ class TaskDetails extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.blueAccent),
                   ),
-                  SizedBox(height:15.0),
+                  SizedBox(height: 15.0),
                   Text(
                     description,
                     textAlign: TextAlign.justify,
                     style: GoogleFonts.merienda(fontSize: 18),
                   ),
-                  SizedBox(height:10.0),
+                  SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -89,7 +89,10 @@ class TaskDetails extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Image.asset('images/todolist.png'),
+                  Image.asset(
+                    'images/todolist.png',
+                    fit: BoxFit.cover,
+                  ),
                 ],
               ),
             ),
