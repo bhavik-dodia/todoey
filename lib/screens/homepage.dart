@@ -16,13 +16,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   bool isCollapsed = true;
   double screenWidth, screenHeight;
-  final Duration duration = const Duration(milliseconds: 250);
+
+  final Duration duration = const Duration(milliseconds: 300);
+
   AnimationController _controller;
+  AnimationController _fabController;
+
   Animation<double> _scaleAnimation;
   Animation<double> _menuScaleAnimation;
+  Animation<double> _fabFadeAnimation;
   Animation<Offset> _menuSlideAnimation;
   Animation<Offset> _homeSlideAnimation;
 
@@ -34,14 +39,16 @@ class _HomePageState extends State<HomePage>
           Provider.of<TaskData>(context, listen: false).loadTasks(value));
     });
     _controller = AnimationController(vsync: this, duration: duration);
+    _fabController = AnimationController(vsync: this, duration: duration);
     _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(_controller);
     _menuScaleAnimation = Tween<double>(begin: 0, end: 1).animate(_controller);
+    _fabFadeAnimation = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _fabController, curve: Curves.easeInOutBack,));
     _menuSlideAnimation =
         Tween<Offset>(begin: Offset(-0.5, 0), end: Offset(0, 0))
             .animate(_controller);
     _homeSlideAnimation =
         Tween<Offset>(begin: Offset(0, 0), end: Offset(0.6, 0)).animate(
-            CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
+            CurvedAnimation(parent: _controller, curve: Curves.easeInOutBack));
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -55,6 +62,7 @@ class _HomePageState extends State<HomePage>
   @override
   void dispose() {
     _controller.dispose();
+    _fabController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -172,7 +180,14 @@ class _HomePageState extends State<HomePage>
                                     topRight: Radius.circular(30.0)),
                                 color: Theme.of(context).canvasColor,
                               ),
-                              child: TasksList(),
+                              child: TasksList(
+                                onBottom: () => setState(() {
+                                  _fabController.forward();
+                                }),
+                                onTop: () => setState(() {
+                                  _fabController.reverse();
+                                }),
+                              ),
                             ),
                           ),
                         ],
@@ -180,24 +195,27 @@ class _HomePageState extends State<HomePage>
                       Positioned(
                         bottom: 18.0,
                         right: 18.0,
-                        child: FloatingActionButton(
-                          shape: SquircleBorder(superRadius: 5.0),
-                          tooltip: 'Add New Task',
-                          onPressed: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) => AddTask(),
-                                clipBehavior: Clip.antiAlias,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(30.0),
-                                      topRight: Radius.circular(30.0)),
-                                ),
-                                isScrollControlled: true);
-                          },
-                          backgroundColor: Colors.blueAccent,
-                          splashColor: Colors.blue,
-                          child: Icon(Icons.add, size: 35.0),
+                        child: ScaleTransition(
+                          scale: _fabFadeAnimation,
+                          child: FloatingActionButton(
+                            shape: SquircleBorder(superRadius: 5.0),
+                            tooltip: 'Add New Task',
+                            onPressed: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => AddTask(),
+                                  clipBehavior: Clip.antiAlias,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(30.0),
+                                        topRight: Radius.circular(30.0)),
+                                  ),
+                                  isScrollControlled: true);
+                            },
+                            backgroundColor: Colors.blueAccent,
+                            splashColor: Colors.blue,
+                            child: Icon(Icons.add, size: 35.0),
+                          ),
                         ),
                       ),
                     ],

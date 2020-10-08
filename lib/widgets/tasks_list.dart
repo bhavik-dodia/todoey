@@ -8,11 +8,41 @@ import 'package:provider/provider.dart';
 import 'package:animations/animations.dart';
 
 class TasksList extends StatefulWidget {
+  final Function onBottom;
+  final Function onTop;
+
+  TasksList({this.onBottom, this.onTop});
   @override
   _TasksListState createState() => _TasksListState();
 }
 
 class _TasksListState extends State<TasksList> {
+  ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(() {
+      if (_scrollController.offset >=
+              _scrollController.position.maxScrollExtent &&
+          !_scrollController.position.outOfRange) {
+        widget.onBottom();
+      }
+      if (_scrollController.offset <=
+              _scrollController.position.minScrollExtent &&
+          !_scrollController.position.outOfRange) {
+        widget.onTop();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<TaskData>(
@@ -30,6 +60,7 @@ class _TasksListState extends State<TasksList> {
                 ],
               )
             : ListView.builder(
+                controller: _scrollController,
                 itemCount: taskData.taskCount,
                 itemBuilder: (contex, index) {
                   final task = taskData.tasks[index];
@@ -38,7 +69,7 @@ class _TasksListState extends State<TasksList> {
                     closedColor: Theme.of(context).canvasColor,
                     openColor: Theme.of(context).canvasColor,
                     transitionType: ContainerTransitionType.fadeThrough,
-                    transitionDuration: const Duration(milliseconds: 500),
+                    transitionDuration: const Duration(milliseconds: 300),
                     closedShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
                     openBuilder: (contex, closeContainer) {
@@ -58,6 +89,7 @@ class _TasksListState extends State<TasksList> {
                     closedBuilder: (contex, openContainer) {
                       return TaskTile(
                         taskTitle: task.name,
+                        time: task.time,
                         isChecked: task.isDone,
                         toggleCheckbox: (checkboxState) {
                           taskData.updateTask(task);

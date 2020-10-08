@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:Todoey/models/task_data.dart';
+import 'package:intl/intl.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -12,9 +13,9 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
-  String newTaskTitle = '';
-  String newDescription = '';
-  String reminderTime = '';
+  String newTaskTitle;
+  String newDescription = 'No Description';
+  String reminderTime = 'No Reminder';
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
 
@@ -96,9 +97,10 @@ class _AddTaskState extends State<AddTask> {
             ),
           ),
           onChanged: (value) {
-            setState(() {
-              newTaskTitle = value;
-            });
+            if (value != null)
+              setState(() {
+                newTaskTitle = value;
+              });
           },
           textAlign: TextAlign.center,
           textCapitalization: TextCapitalization.sentences,
@@ -109,7 +111,7 @@ class _AddTaskState extends State<AddTask> {
         Visibility(
           visible: isDesc,
           child: TextField(
-            autofocus: false,
+            autofocus: true,
             decoration: InputDecoration(
               border: InputBorder.none,
               enabledBorder: InputBorder.none,
@@ -124,11 +126,14 @@ class _AddTaskState extends State<AddTask> {
               ),
             ),
             onChanged: (value) {
-              setState(() {
-                newDescription = value;
-              });
+              if (value != null)
+                setState(() {
+                  newDescription = value;
+                });
             },
             textAlign: TextAlign.left,
+            maxLines: 3,
+            minLines: 1,
             textCapitalization: TextCapitalization.sentences,
             style: GoogleFonts.merienda(
               fontSize: 18.0,
@@ -233,7 +238,8 @@ class _AddTaskState extends State<AddTask> {
                           seconds);
                       Toast.show('Reminder set successfully...', context,
                           gravity: Toast.TOP);
-                      reminderTime = selectedDate.toString();
+                      reminderTime =
+                          DateFormat('EEE, MMM d hh:mm a').format(selectedDate);
                     }
                     Provider.of<TaskData>(context, listen: false)
                         .addTask(newTaskTitle, newDescription, reminderTime);

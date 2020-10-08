@@ -22,7 +22,6 @@ class NotificationHelper {
           playSound: true,
           channelShowBadge: true,
           enableVibration: true,
-          color: Colors.blueAccent,
           ledColor: Colors.white,
           ledOnMs: 1000,
           ledOffMs: 500,

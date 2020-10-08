@@ -4,12 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 class TaskTile extends StatelessWidget {
   final bool isChecked;
   final String taskTitle;
+  final String time;
   final Function toggleCheckbox;
   final Function onLongPress;
   final Function onTap;
 
   TaskTile(
-      {this.isChecked, this.taskTitle, this.toggleCheckbox, this.onLongPress, this.onTap});
+      {this.isChecked, this.taskTitle,this.time, this.toggleCheckbox, this.onLongPress, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,12 @@ class TaskTile extends StatelessWidget {
           fontSize: 18.0,
           decoration:
               isChecked ? TextDecoration.lineThrough : TextDecoration.none,
+        ),
+      ),
+      subtitle: Text(
+          time,
+        style: GoogleFonts.merienda(
+          fontSize: 12.0,
         ),
       ),
       trailing: Checkbox(

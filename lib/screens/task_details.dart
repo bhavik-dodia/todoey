@@ -29,7 +29,7 @@ class TaskDetails extends StatelessWidget {
                 height: 55.0,
                 width: 55.0,
                 child: IconButton(
-                  tooltip: 'Return to Home',
+                    tooltip: 'Return to Home',
                     icon: Icon(
                       Icons.arrow_back,
                       color: Colors.blueAccent,
@@ -55,18 +55,23 @@ class TaskDetails extends StatelessWidget {
                     title,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.merienda(
-                        fontSize: 25, color: Colors.blueAccent),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent),
                   ),
+                  SizedBox(height:15.0),
                   Text(
-                    description != null ? description : ' ',
+                    description,
+                    textAlign: TextAlign.justify,
                     style: GoogleFonts.merienda(fontSize: 18),
                   ),
+                  SizedBox(height:10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        time != null ? time : ' ',
-                        style: GoogleFonts.merienda(fontSize: 13),
+                        time,
+                        style: GoogleFonts.merienda(fontSize: 12),
                       ),
                       Card(
                         elevation: 0.0,
