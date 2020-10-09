@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      padding: EdgeInsets.only(top: 40.0),
+      padding: EdgeInsets.only(top: 40.0, bottom: 15.0),
       physics: BouncingScrollPhysics(),
       children: [
         Padding(
