@@ -16,7 +16,7 @@ class NotificationHelper {
           importance: Importance.max,
           priority: Priority.max,
           category: 'CATEGORY_REMINDER',
-          icon: 'ic_notification',
+          icon: 'appicon',
           largeIcon: DrawableResourceAndroidBitmap('notification_icon'),
           enableLights: true,
           playSound: true,

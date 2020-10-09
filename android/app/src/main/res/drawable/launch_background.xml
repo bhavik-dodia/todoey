@@ -5,8 +5,8 @@
 
     <!-- You can insert your own image assets here -->
     <item
-        android:width="350dp"
-        android:height="350dp"
-        android:drawable="@drawable/todolist"
+        android:width="175dp"
+        android:height="219dp"
+        android:drawable="@drawable/appicon"
         android:gravity="center" />
 </layer-list>
