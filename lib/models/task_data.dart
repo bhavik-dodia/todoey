@@ -6,6 +6,15 @@ import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 class TaskData extends ChangeNotifier {
+  bool _deleteOnComplete = false;
+
+  bool get deleteOnComplete => _deleteOnComplete;
+
+  set deleteOnComplete(bool value) {
+    _deleteOnComplete = value;
+    notifyListeners();
+  }
+
   List<Task> _tasks = [];
 
   UnmodifiableListView<Task> get tasks {
@@ -37,6 +46,7 @@ class TaskData extends ChangeNotifier {
 
   void updateTask(Task task) {
     task.toggleDone();
+    if (_deleteOnComplete) deleteTask(task);
     notifyListeners();
   }
 

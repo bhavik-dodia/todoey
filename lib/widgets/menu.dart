@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// ignore: must_be_immutable
 class Menu extends StatelessWidget {
   final Function manageDrawer;
   Menu(
@@ -21,7 +20,7 @@ class Menu extends StatelessWidget {
   final Animation<Offset> _slideAnimation;
   final Animation<double> _menuScaleAnimation;
 
-  List<MenuItem> _menuItems = [
+  final List<MenuItem> _menuItems = [
     MenuItem(
       iconData: FontAwesomeIcons.home,
       name: 'Home',

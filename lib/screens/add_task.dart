@@ -238,8 +238,7 @@ class _AddTaskState extends State<AddTask> {
                     if (seconds > 0) {
                       NotificationHelper().sendNotification(
                           Provider.of<TaskData>(context, listen: false)
-                                  .tasks
-                                  .length +
+                                  .taskCount +
                               1,
                           newTaskTitle,
                           seconds);
