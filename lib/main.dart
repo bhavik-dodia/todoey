@@ -40,10 +40,16 @@ class MyApp extends StatelessWidget {
         title: 'Todoey',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          accentColor: Colors.blueAccent,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         darkTheme: ThemeData.dark().copyWith(
-            accentColor: Colors.blueAccent, primaryColor: Colors.blueAccent),
+          accentColor: Colors.blueAccent,visualDensity: VisualDensity.adaptivePlatformDensity,
+          colorScheme: ColorScheme.dark().copyWith(
+            primary: Colors.blueAccent,
+            secondary: Colors.blueAccent,
+          ),
+        ),
         home: HomePage(),
       ),
     );

@@ -10,7 +10,12 @@ class TaskTile extends StatelessWidget {
   final Function onTap;
 
   TaskTile(
-      {this.isChecked, this.taskTitle,this.time, this.toggleCheckbox, this.onLongPress, this.onTap});
+      {this.isChecked,
+      this.taskTitle,
+      this.time,
+      this.toggleCheckbox,
+      this.onLongPress,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class TaskTile extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-          time,
+        time,
         style: GoogleFonts.merienda(
           fontSize: 12.0,
         ),

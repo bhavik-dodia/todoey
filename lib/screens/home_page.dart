@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:Todoey/widgets/menu.dart';
@@ -85,6 +86,7 @@ class _HomePageState extends State<HomePage>
     screenWidth = size.width;
     return Scaffold(
       body: Stack(
+        overflow: Overflow.clip,
         children: [
           Menu(
             slideAnimation: _menuSlideAnimation,
@@ -117,7 +119,7 @@ class _HomePageState extends State<HomePage>
                     Radius.circular(isCollapsed ? 0 : 35),
                   ),
                   elevation: 8.0,
-                  color: Colors.blueAccent,
+                  color: Theme.of(context).accentColor,
                   child: Stack(
                     children: [
                       Column(
@@ -132,7 +134,7 @@ class _HomePageState extends State<HomePage>
                                   clipBehavior: Clip.antiAlias,
                                   elevation: 8.0,
                                   color: Theme.of(context).canvasColor,
-                                  shape: SquircleBorder(superRadius: 5.0),
+                                  shape: SquircleBorder(),
                                   child: Container(
                                     height: 55.0,
                                     width: 55.0,
@@ -145,7 +147,7 @@ class _HomePageState extends State<HomePage>
                                                 Tween<double>(begin: 0, end: 1)
                                                     .animate(_controller),
                                             size: 30.0,
-                                            color: Colors.blueAccent),
+                                            color: Theme.of(context).accentColor),
                                       ),
                                     ),
                                   ),
@@ -202,7 +204,7 @@ class _HomePageState extends State<HomePage>
                         child: ScaleTransition(
                           scale: _fabFadeAnimation,
                           child: FloatingActionButton(
-                            shape: SquircleBorder(superRadius: 5.0),
+                            shape: SquircleBorder(),
                             tooltip: 'Add New Task',
                             onPressed: () {
                               showModalBottomSheet(
@@ -216,9 +218,9 @@ class _HomePageState extends State<HomePage>
                                   ),
                                   isScrollControlled: true);
                             },
-                            backgroundColor: Colors.blueAccent,
-                            splashColor: Colors.blue,
-                            child: Icon(Icons.add, size: 35.0),
+                            backgroundColor: Theme.of(context).accentColor,
+                            splashColor: Theme.of(context).accentColor,
+                            child: FaIcon(FontAwesomeIcons.plus),
                           ),
                         ),
                       ),

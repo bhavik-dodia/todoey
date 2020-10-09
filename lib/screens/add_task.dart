@@ -1,6 +1,7 @@
 import 'package:Todoey/helpers/notification_helper.dart';
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
@@ -78,7 +79,7 @@ class _AddTaskState extends State<AddTask> {
           style: GoogleFonts.merienda(
             fontSize: 30.0,
             fontWeight: FontWeight.bold,
-            color: Colors.blueAccent,
+            color: Theme.of(context).accentColor,
           ),
         ),
         TextField(
@@ -149,12 +150,14 @@ class _AddTaskState extends State<AddTask> {
                 elevation: 0.0,
                 clipBehavior: Clip.antiAlias,
                 shape: SquircleBorder(),
-                color: Colors.blueAccent.withOpacity(0.3),
+                color: Theme.of(context).accentColor.withOpacity(0.3),
                 child: IconButton(
                   tooltip: 'Set Description',
-                  icon: Icon(Icons.description, color: Colors.blueAccent),
-                  highlightColor: Colors.blueAccent.withOpacity(0.4),
-                  splashColor: Colors.blueAccent.withOpacity(0.5),
+                  icon: FaIcon(FontAwesomeIcons.alignLeft,
+                      color: Theme.of(context).accentColor),
+                  highlightColor:
+                      Theme.of(context).accentColor.withOpacity(0.4),
+                  splashColor: Theme.of(context).accentColor.withOpacity(0.5),
                   onPressed: () => setState(() {
                     isDesc = !isDesc;
                   }),
@@ -167,12 +170,14 @@ class _AddTaskState extends State<AddTask> {
                 elevation: 0.0,
                 clipBehavior: Clip.antiAlias,
                 shape: SquircleBorder(),
-                color: Colors.blueAccent.withOpacity(0.3),
+                color: Theme.of(context).accentColor.withOpacity(0.3),
                 child: IconButton(
                     tooltip: 'Set Reminder',
-                    icon: Icon(Icons.event, color: Colors.blueAccent),
-                    highlightColor: Colors.blueAccent.withOpacity(0.4),
-                    splashColor: Colors.blueAccent.withOpacity(0.5),
+                    icon: FaIcon(FontAwesomeIcons.calendarAlt,
+                        color: Theme.of(context).accentColor),
+                    highlightColor:
+                        Theme.of(context).accentColor.withOpacity(0.4),
+                    splashColor: Theme.of(context).accentColor.withOpacity(0.5),
                     onPressed: () => _selectDate(context)),
               ),
             ),
@@ -180,12 +185,12 @@ class _AddTaskState extends State<AddTask> {
             //   elevation: 0.0,
             //   clipBehavior: Clip.antiAlias,
             //   shape: SquircleBorder(),
-            //   color: Colors.blueAccent.withOpacity(0.3),
+            //   color: Theme.of(context).accentColor.withOpacity(0.3),
             //   child: IconButton(
             //     tooltip: 'Add Task',
-            //     icon: Icon(Icons.add, color: Colors.blueAccent),
-            //     highlightColor: Colors.blueAccent.withOpacity(0.4),
-            //     splashColor: Colors.blueAccent.withOpacity(0.5),
+            //     icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+            //     highlightColor: Theme.of(context).accentColor.withOpacity(0.4),
+            //     splashColor: Theme.of(context).accentColor.withOpacity(0.5),
             //     iconSize: 30.0,
             //     onPressed: () {
             //       if (newTaskTitle != null) {
@@ -251,13 +256,13 @@ class _AddTaskState extends State<AddTask> {
                   }
                 },
                 elevation: 0.0,
-                color: Colors.blueAccent.withOpacity(0.3),
-                textColor: Colors.blueAccent,
-                highlightColor: Colors.blueAccent.withOpacity(0.4),
-                splashColor: Colors.blueAccent.withOpacity(0.5),
+                color: Theme.of(context).accentColor.withOpacity(0.3),
+                textColor: Theme.of(context).accentColor,
+                highlightColor: Theme.of(context).accentColor.withOpacity(0.4),
+                splashColor: Theme.of(context).accentColor.withOpacity(0.5),
                 highlightElevation: 0.0,
-                height: 55.0,
-                shape: SquircleBorder(superRadius: 20),
+                height: 53.0,
+                shape: SquircleBorder(superRadius: 15),
                 child: Text(
                   'Add',
                   style: GoogleFonts.merienda(

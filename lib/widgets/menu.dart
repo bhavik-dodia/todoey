@@ -1,11 +1,14 @@
+import 'package:Todoey/models/menu_item.dart';
 import 'package:Todoey/screens/about_page.dart';
+import 'package:Todoey/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class Menu extends StatelessWidget {
   final Function manageDrawer;
-  const Menu(
+  Menu(
       {Key key,
       @required Animation<Offset> slideAnimation,
       @required Animation<double> menuScaleAnimation,
@@ -17,6 +20,45 @@ class Menu extends StatelessWidget {
   final Animation<Offset> _slideAnimation;
   final Animation<double> _menuScaleAnimation;
 
+  List<MenuItem> _menuItems = [
+    MenuItem(
+      iconData: FontAwesomeIcons.home,
+      name: 'Home',
+      action: (context) {},
+    ),
+    MenuItem(
+      iconData: FontAwesomeIcons.tools,
+      name: 'Settings',
+      action: (context) {},
+    ),
+    MenuItem(
+      iconData: FontAwesomeIcons.solidCommentDots,
+      name: 'FeedBack',
+      action: (context) async => await launch(
+        'mailto:dodiabhavik.db@gmail.com',
+      ),
+    ),
+    MenuItem(
+      iconData: FontAwesomeIcons.infoCircle,
+      name: 'About',
+      action: (context) {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => AboutPage(),
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
+            ),
+          ),
+          isScrollControlled: true,
+          isDismissible: true,
+        );
+      },
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SlideTransition(
@@ -25,73 +67,25 @@ class Menu extends StatelessWidget {
         scale: _menuScaleAnimation,
         child: Align(
           alignment: Alignment.centerLeft,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: 0.5 * MediaQuery.of(context).size.width,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                    color: Colors.blueAccent.withOpacity(0.3),
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30.0),
-                        bottomRight: Radius.circular(30.0))),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30.0),
-                          bottomRight: Radius.circular(30.0))),
-                  onTap: manageDrawer,
-                  leading: FaIcon(
-                    FontAwesomeIcons.home,
-                    color: Colors.blueAccent,
-                  ),
-                  title: Text(
-                    'Home',
-                    style: GoogleFonts.merienda(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueAccent),
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: FaIcon(FontAwesomeIcons.listAlt),
-                title: Text(
-                  'Tasks',
-                  style: GoogleFonts.merienda(fontSize: 18.0),
-                ),
-              ),
-              ListTile(
-                leading: FaIcon(FontAwesomeIcons.tools),
-                title: Text(
-                  'Settings',
-                  style: GoogleFonts.merienda(fontSize: 18.0),
-                ),
-              ),
-              ListTile(
-                  leading: FaIcon(FontAwesomeIcons.infoCircle),
-                  title: Text(
-                    'About',
-                    style: GoogleFonts.merienda(fontSize: 18.0),
-                  ),
+          child: Container(
+            width: 0.5 * MediaQuery.of(context).size.width,
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
+              itemCount: _menuItems.length,
+              itemBuilder: (context, index) {
+                final menuitem = _menuItems[index];
+                return MenuTile(
+                  icon: menuitem.iconData,
+                  title: menuitem.name,
+                  isSelected: index == 0 ? true : false,
                   onTap: () {
                     manageDrawer();
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (context) => AboutPage(),
-                        clipBehavior: Clip.antiAlias,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30.0),
-                              topRight: Radius.circular(30.0)),
-                        ),
-                        isScrollControlled: true,
-                        isDismissible: true);
-                  }),
-            ],
+                    menuitem.action(context);
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),

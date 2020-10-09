@@ -1,5 +1,6 @@
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TaskDetails extends StatelessWidget {
@@ -15,7 +16,7 @@ class TaskDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Theme.of(context).accentColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,13 +30,13 @@ class TaskDetails extends StatelessWidget {
                 height: 55.0,
                 width: 55.0,
                 child: IconButton(
-                    tooltip: 'Return to Home',
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.blueAccent,
-                    ),
-                    iconSize: 30.0,
-                    onPressed: onBack),
+                  tooltip: 'Return to Home',
+                  icon: FaIcon(
+                    FontAwesomeIcons.arrowLeft,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  onPressed: onBack,
+                ),
               ),
             ),
           ),
@@ -57,7 +58,7 @@ class TaskDetails extends StatelessWidget {
                     style: GoogleFonts.merienda(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blueAccent),
+                        color: Theme.of(context).accentColor),
                   ),
                   SizedBox(height: 15.0),
                   Text(
