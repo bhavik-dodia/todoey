@@ -147,7 +147,8 @@ class _HomePageState extends State<HomePage>
                                                 Tween<double>(begin: 0, end: 1)
                                                     .animate(_controller),
                                             size: 30.0,
-                                            color: Theme.of(context).accentColor),
+                                            color:
+                                                Theme.of(context).accentColor),
                                       ),
                                     ),
                                   ),
@@ -220,7 +221,10 @@ class _HomePageState extends State<HomePage>
                             },
                             backgroundColor: Theme.of(context).accentColor,
                             splashColor: Theme.of(context).accentColor,
-                            child: FaIcon(FontAwesomeIcons.plus),
+                            child: FaIcon(
+                              FontAwesomeIcons.plus,
+                              color: Theme.of(context).canvasColor,
+                            ),
                           ),
                         ),
                       ),

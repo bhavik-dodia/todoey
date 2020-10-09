@@ -1,3 +1,4 @@
+import 'package:Todoey/models/app_theme.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter/material.dart';
@@ -33,21 +34,33 @@ Future<void> _configureLocalTimeZone() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => TaskData(),
-      child: MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => TaskData(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AppTheme(),
+        ),
+      ],
+      builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Todoey',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          accentColor: Colors.blueAccent,
+          accentColor: Provider.of<AppTheme>(context).accentColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          colorScheme: ColorScheme.light().copyWith(
+            primary: Provider.of<AppTheme>(context).accentColor,
+            secondary: Provider.of<AppTheme>(context).accentColor,
+          ),
         ),
         darkTheme: ThemeData.dark().copyWith(
-          accentColor: Colors.blueAccent,visualDensity: VisualDensity.adaptivePlatformDensity,
+          accentColor: Provider.of<AppTheme>(context).accentColor,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
           colorScheme: ColorScheme.dark().copyWith(
-            primary: Colors.blueAccent,
-            secondary: Colors.blueAccent,
+            primary: Provider.of<AppTheme>(context).accentColor,
+            secondary: Provider.of<AppTheme>(context).accentColor,
           ),
         ),
         home: HomePage(),

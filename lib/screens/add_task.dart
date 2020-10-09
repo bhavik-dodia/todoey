@@ -103,6 +103,7 @@ class _AddTaskState extends State<AddTask> {
                 newTaskTitle = value;
               });
           },
+          cursorColor: Theme.of(context).accentColor,
           textAlign: TextAlign.center,
           textCapitalization: TextCapitalization.sentences,
           style: GoogleFonts.merienda(
@@ -126,6 +127,7 @@ class _AddTaskState extends State<AddTask> {
                 fontSize: 18.0,
               ),
             ),
+            cursorColor: Theme.of(context).accentColor,
             onChanged: (value) {
               if (value != null)
                 setState(() {

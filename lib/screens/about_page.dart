@@ -95,9 +95,7 @@ class AboutPage extends StatelessWidget {
                               elevation: 0.0,
                               clipBehavior: Clip.antiAlias,
                               shape: SquircleBorder(),
-                              color: Theme.of(context)
-                                  .accentColor
-                                  .withOpacity(0.3),
+                              color: Colors.blueAccent.withOpacity(0.3),
                               child: IconButton(
                                   tooltip: 'Linked In',
                                   icon: FaIcon(
@@ -159,20 +157,21 @@ class AboutPage extends StatelessWidget {
               Align(
                 alignment: Alignment.topCenter,
                 child: Card(
-                    elevation: 8.0,
-                    clipBehavior: Clip.antiAlias,
-                    shape: SquircleBorder(),
-                    child: ClipRect(
-                      child: Align(
-                        alignment: Alignment.center,
-                        widthFactor: 0.87,
-                        heightFactor: 0.87,
-                        child: Image.asset(
-                          'images/male_avatar_blueAccent.png',
-                          scale: 6.7,
-                        ),
+                  elevation: 8.0,
+                  clipBehavior: Clip.antiAlias,
+                  shape: SquircleBorder(),
+                  child: ClipRect(
+                    child: Align(
+                      alignment: Alignment.center,
+                      widthFactor: 0.87,
+                      heightFactor: 0.87,
+                      child: Image.asset(
+                        'images/male_avatar_blueAccent.png',
+                        scale: 6.7,
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -182,7 +181,8 @@ class AboutPage extends StatelessWidget {
           Card(
             elevation: 8.0,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -1,5 +1,6 @@
 import 'package:Todoey/models/menu_item.dart';
 import 'package:Todoey/screens/about_page.dart';
+import 'package:Todoey/screens/settings_page.dart';
 import 'package:Todoey/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,7 +30,21 @@ class Menu extends StatelessWidget {
     MenuItem(
       iconData: FontAwesomeIcons.tools,
       name: 'Settings',
-      action: (context) {},
+      action: (context) {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => SettingsPage(),
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
+            ),
+          ),
+          isScrollControlled: true,
+          isDismissible: true,
+        );
+      },
     ),
     MenuItem(
       iconData: FontAwesomeIcons.solidCommentDots,
