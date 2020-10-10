@@ -5,8 +5,9 @@ import 'package:provider/provider.dart';
 
 class ColorBox extends StatelessWidget {
   final Color color;
+  final int colorIndex;
 
-  ColorBox({this.color});
+  ColorBox({this.color, this.colorIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class ColorBox extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () {
-          Provider.of<AppTheme>(context, listen: false).accentColor = color;
+          Provider.of<AppTheme>(context, listen: false).currentIndex = colorIndex;
         },
         child: SizedBox(
           height: 40.0,

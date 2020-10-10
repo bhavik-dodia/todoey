@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:Todoey/models/settings.dart';
+import 'package:Todoey/models/app_theme.dart';
+// import 'package:Todoey/models/settings.dart';
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with TickerProviderStateMixin, WidgetsBindingObserver {
-  Settings settings;
   bool isCollapsed = true;
   double screenWidth, screenHeight;
 
@@ -38,17 +38,19 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    settings = Settings(
-        Provider.of<TaskData>(context, listen: false).deleteOnComplete);
+
     getApplicationDocumentsDirectory().then((Directory directory) {
       File('${directory.path}/tasks.json').readAsString().then((value) =>
           Provider.of<TaskData>(context, listen: false).loadTasks(value));
       File('${directory.path}/settings.json').readAsString().then((value) {
         var json = jsonDecode(value);
+        Provider.of<AppTheme>(context, listen: false).currentIndex =
+            json['colorIndex'];
         Provider.of<TaskData>(context, listen: false).deleteOnComplete =
             json['autoDelete'];
       });
     });
+
     _controller = AnimationController(vsync: this, duration: duration);
     _fabController = AnimationController(vsync: this, duration: duration);
     _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(_controller);
@@ -71,7 +73,8 @@ class _HomePageState extends State<HomePage>
       Provider.of<TaskData>(context, listen: false).saveTasks();
       getApplicationDocumentsDirectory().then((Directory directory) {
         File('${directory.path}/settings.json').writeAsStringSync(
-            '{"autoDelete": ${Provider.of<TaskData>(context, listen: false).deleteOnComplete}}');
+          '{"colorIndex": ${Provider.of<AppTheme>(context, listen: false).currentIndex}, "autoDelete": ${Provider.of<TaskData>(context, listen: false).deleteOnComplete}}',
+        );
       });
     }
   }

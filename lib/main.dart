@@ -49,19 +49,19 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           accentColor: Provider.of<AppTheme>(context).accentColor,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
           colorScheme: ColorScheme.light().copyWith(
             primary: Provider.of<AppTheme>(context).accentColor,
             secondary: Provider.of<AppTheme>(context).accentColor,
           ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         darkTheme: ThemeData.dark().copyWith(
           accentColor: Provider.of<AppTheme>(context).accentColor,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
           colorScheme: ColorScheme.dark().copyWith(
             primary: Provider.of<AppTheme>(context).accentColor,
             secondary: Provider.of<AppTheme>(context).accentColor,
           ),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomePage(),
       ),

@@ -23,11 +23,11 @@ class AboutPage extends StatelessWidget {
         ),
       ),
       child: ListView(
-        // shrinkWrap: true,
+        shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.only(
             top: 50.0,
-            bottom: MediaQuery.of(context).viewInsets.bottom,
+            bottom: 15.0,
             left: 15.0,
             right: 15.0),
         children: [
@@ -41,21 +41,27 @@ class AboutPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                      height: 100.0,
-                      width: 100.0,
-                      child: Image.asset('images/app_icon.png')),
+                    height: 100.0,
+                    width: 100.0,
+                    child: Image.asset(
+                      'images/appicon.png',
+                      scale: 6,
+                    ),
+                  ),
                   Expanded(
-                      child: ListTile(
-                    title: Text(
-                      'Todoey',
-                      style: GoogleFonts.merienda(
-                          fontSize: 25.0, color: Theme.of(context).accentColor),
+                    child: ListTile(
+                      title: Text(
+                        'Todoey',
+                        style: GoogleFonts.merienda(
+                            fontSize: 25.0,
+                            color: Theme.of(context).accentColor),
+                      ),
+                      subtitle: Text(
+                        '2.5.0',
+                        style: GoogleFonts.merienda(fontSize: 12.0),
+                      ),
                     ),
-                    subtitle: Text(
-                      '2.0.0',
-                      style: GoogleFonts.merienda(fontSize: 12.0),
-                    ),
-                  )),
+                  ),
                 ],
               ),
             ),
@@ -77,7 +83,7 @@ class AboutPage extends StatelessWidget {
                         SizedBox(height: 60.0),
                         Text(
                           'Designed and Developed By',
-                          style: GoogleFonts.merienda(color: Colors.grey),
+                          style: GoogleFonts.merienda(color: Colors.grey[600]),
                         ),
                         SizedBox(height: 10.0),
                         Text(
@@ -97,17 +103,17 @@ class AboutPage extends StatelessWidget {
                               shape: SquircleBorder(),
                               color: Colors.blueAccent.withOpacity(0.3),
                               child: IconButton(
-                                  tooltip: 'Linked In',
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.linkedin,
-                                    color: Colors.blueAccent,
-                                  ),
-                                  highlightColor:
-                                      Colors.blueAccent.withOpacity(0.4),
-                                  splashColor:
-                                      Colors.blueAccent.withOpacity(0.5),
-                                  onPressed: () async => await launch(
-                                      'https://www.linkedin.com/in/bhavikdodia2000/')),
+                                tooltip: 'Linked In',
+                                icon: FaIcon(
+                                  FontAwesomeIcons.linkedin,
+                                  color: Colors.blueAccent,
+                                ),
+                                highlightColor:
+                                    Colors.blueAccent.withOpacity(0.4),
+                                splashColor: Colors.blueAccent.withOpacity(0.5),
+                                onPressed: () async => await launch(
+                                    'https://www.linkedin.com/in/bhavikdodia2000/'),
+                              ),
                             ),
                             Card(
                               elevation: 0.0,
@@ -115,17 +121,18 @@ class AboutPage extends StatelessWidget {
                               shape: SquircleBorder(),
                               color: Colors.purpleAccent.withOpacity(0.3),
                               child: IconButton(
-                                  tooltip: 'GitHub',
-                                  icon: FaIcon(
-                                    FontAwesomeIcons.github,
-                                    color: Colors.purpleAccent,
-                                  ),
-                                  highlightColor:
-                                      Colors.purpleAccent.withOpacity(0.4),
-                                  splashColor:
-                                      Colors.purpleAccent.withOpacity(0.5),
-                                  onPressed: () async => await launch(
-                                      'https://github.com/bhavik-dodia')),
+                                tooltip: 'GitHub',
+                                icon: FaIcon(
+                                  FontAwesomeIcons.github,
+                                  color: Colors.purpleAccent,
+                                ),
+                                highlightColor:
+                                    Colors.purpleAccent.withOpacity(0.4),
+                                splashColor:
+                                    Colors.purpleAccent.withOpacity(0.5),
+                                onPressed: () async => await launch(
+                                    'https://github.com/bhavik-dodia'),
+                              ),
                             ),
                             Card(
                               elevation: 0.0,
@@ -133,22 +140,126 @@ class AboutPage extends StatelessWidget {
                               shape: SquircleBorder(),
                               color: Colors.pinkAccent.withOpacity(0.3),
                               child: IconButton(
-                                  tooltip: 'Gmail',
-                                  icon: Icon(Icons.mail,
-                                      color: Colors.pinkAccent),
-                                  highlightColor:
-                                      Colors.pinkAccent.withOpacity(0.4),
-                                  splashColor:
-                                      Colors.pinkAccent.withOpacity(0.5),
-                                  onPressed: () async => await launch(
-                                        'mailto:dodiabhavik.db@gmail.com',
-                                      )),
+                                tooltip: 'Gmail',
+                                icon:
+                                    Icon(Icons.mail, color: Colors.pinkAccent),
+                                highlightColor:
+                                    Colors.pinkAccent.withOpacity(0.4),
+                                splashColor: Colors.pinkAccent.withOpacity(0.5),
+                                onPressed: () async => await launch(
+                                    'mailto:dodiabhavik.db@gmail.com'),
+                              ),
                             ),
                             SizedBox(width: 10.0),
                           ],
                         ),
-                        SizedBox(height: 15.0),
-                        // Divider(),
+                        Divider(indent: 10.0, endIndent: 10.0),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, left: 15.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Special Thanks',
+                              style: GoogleFonts.merienda(
+                                fontSize: 18.0,
+                                color: Theme.of(context).accentColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                        ListTile(
+                          leading: Card(
+                            elevation: 2.0,
+                            clipBehavior: Clip.antiAlias,
+                            shape: SquircleBorder(),
+                            child: ClipRect(
+                              child: Align(
+                                alignment: Alignment.center,
+                                widthFactor: 0.87,
+                                heightFactor: 0.87,
+                                child: Image.asset(
+                                  'images/profile_pic.png',
+                                  scale: 6.7,
+                                ),
+                              ),
+                            ),
+                          ),
+                          title: Text(
+                            'Deep Gandhi',
+                            style: GoogleFonts.merienda(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                          subtitle: Text(
+                            'Designing is all about viewing the world from a different point of view, It\'s a way of looking anew, as if you have never seen it before the first time.',
+                            style: GoogleFonts.merienda(),
+                            textAlign: TextAlign.justify,
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(width: 10.0),
+                            Card(
+                              elevation: 0.0,
+                              clipBehavior: Clip.antiAlias,
+                              shape: SquircleBorder(),
+                              color: Colors.deepOrangeAccent.withOpacity(0.3),
+                              child: IconButton(
+                                tooltip: 'Behance',
+                                icon: FaIcon(
+                                  FontAwesomeIcons.behance,
+                                  color: Colors.deepOrangeAccent,
+                                ),
+                                highlightColor:
+                                    Colors.deepOrangeAccent.withOpacity(0.4),
+                                splashColor:
+                                    Colors.deepOrangeAccent.withOpacity(0.5),
+                                onPressed: () async => await launch(
+                                    'https://www.behance.net/hiteshgandhi'),
+                              ),
+                            ),
+                            Card(
+                              elevation: 0.0,
+                              clipBehavior: Clip.antiAlias,
+                              shape: SquircleBorder(),
+                              color: Colors.greenAccent.withOpacity(0.3),
+                              child: IconButton(
+                                tooltip: 'Linked In',
+                                icon: FaIcon(
+                                  FontAwesomeIcons.linkedin,
+                                  color: Colors.greenAccent,
+                                ),
+                                highlightColor:
+                                    Colors.greenAccent.withOpacity(0.4),
+                                splashColor:
+                                    Colors.greenAccent.withOpacity(0.5),
+                                onPressed: () async => await launch(
+                                    'https://www.linkedin.com/in/deep-gandhi-b37572170/'),
+                              ),
+                            ),
+                            Card(
+                              elevation: 0.0,
+                              clipBehavior: Clip.antiAlias,
+                              shape: SquircleBorder(),
+                              color: Colors.deepPurpleAccent.withOpacity(0.3),
+                              child: IconButton(
+                                tooltip: 'Instagram',
+                                icon: FaIcon(FontAwesomeIcons.instagram,
+                                    color: Colors.deepPurpleAccent),
+                                highlightColor:
+                                    Colors.deepPurpleAccent.withOpacity(0.4),
+                                splashColor:
+                                    Colors.deepPurpleAccent.withOpacity(0.5),
+                                onPressed: () async => await launch(
+                                    'https://www.instagram.com/magicman_deep/'),
+                              ),
+                            ),
+                            SizedBox(width: 10.0),
+                          ],
+                        ),
+                        SizedBox(height: 10.0),
                       ],
                     ),
                   ),
