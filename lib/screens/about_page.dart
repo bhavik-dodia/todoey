@@ -57,7 +57,7 @@ class AboutPage extends StatelessWidget {
                             color: Theme.of(context).accentColor),
                       ),
                       subtitle: Text(
-                        '2.5.0',
+                        '2.6.0',
                         style: GoogleFonts.merienda(fontSize: 12.0),
                       ),
                     ),

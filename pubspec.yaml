@@ -1,11 +1,11 @@
 name: Todoey
-description: A new Flutter project.
+description: Todoey is a simple To-Do App with smooth Material UI and easy to use functionalities!!
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 2.5.0
+version: 2.6.0
 
 environment:
   sdk: ">=2.8.0 <3.0.0"

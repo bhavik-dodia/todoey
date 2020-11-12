@@ -19,7 +19,7 @@ class Task {
       time: json['time'],
       isDone: json['isDone']);
 
-  void editTask(String newTaskTitle, String newDescription, String newTime){
+  void editTask(String newTaskTitle, String newDescription, String newTime) {
     name = newTaskTitle;
     description = newDescription;
     time = newTime;

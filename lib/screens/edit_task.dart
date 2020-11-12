@@ -197,7 +197,8 @@ class _EditTaskState extends State<EditTask> {
               flex: 2,
               child: MaterialButton(
                 onPressed: () {
-                  if (titleController.text != widget.title) {
+                  if (titleController.text != widget.title ||
+                      descriptionController.text != widget.description) {
                     if (seconds > 0) {
                       NotificationHelper().sendNotification(
                           widget.index, titleController.text, seconds);
@@ -214,10 +215,9 @@ class _EditTaskState extends State<EditTask> {
                     Toast.show('Task updated...', context,
                         gravity: Toast.BOTTOM);
                     Navigator.of(context).pop();
-                  } else {
-                    Toast.show('Please enter a task', context,
+                  } else
+                    Toast.show('Please edit title or description', context,
                         gravity: Toast.TOP);
-                  }
                 },
                 elevation: 0.0,
                 color: Theme.of(context).accentColor.withOpacity(0.3),
