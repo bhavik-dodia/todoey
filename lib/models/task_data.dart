@@ -38,13 +38,18 @@ class TaskData extends ChangeNotifier {
     });
   }
 
-  void addTask(String newTaskTitle, String newDescription, String time) {
-    _tasks
-        .add(Task(name: newTaskTitle, description: newDescription, time: time));
+  void addTask(String taskTitle, String description, String time) {
+    _tasks.add(Task(name: taskTitle, description: description, time: time));
     notifyListeners();
   }
 
-  void updateTask(Task task) {
+  void updateTask(
+      Task task, String newTaskTitle, String newDescription, String newTime) {
+    task.editTask(newTaskTitle, newDescription, newTime);
+    notifyListeners();
+  }
+
+  void toggleTask(Task task) {
     task.toggleDone();
     if (_deleteOnComplete) deleteTask(task);
     notifyListeners();

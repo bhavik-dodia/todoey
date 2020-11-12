@@ -1,3 +1,4 @@
+import 'package:Todoey/screens/edit_task.dart';
 import 'package:Todoey/screens/task_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,6 +79,23 @@ class _TasksListState extends State<TasksList> {
                         description: task.description,
                         time: task.time,
                         onBack: closeContainer,
+                        onEdit: () {
+                          closeContainer();
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (context) => EditTask(
+                                  task: task,
+                                  index: index,
+                                  title: task.name,
+                                  description: task.description),
+                              clipBehavior: Clip.antiAlias,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(30.0),
+                                    topRight: Radius.circular(30.0)),
+                              ),
+                              isScrollControlled: true);
+                        },
                         onDelete: () {
                           taskData.deleteTask(task);
                           Toast.show('Task removed...', context,
@@ -92,7 +110,7 @@ class _TasksListState extends State<TasksList> {
                         time: task.time,
                         isChecked: task.isDone,
                         toggleCheckbox: (checkboxState) {
-                          taskData.updateTask(task);
+                          taskData.toggleTask(task);
                         },
                         onTap: openContainer,
                         onLongPress: () {

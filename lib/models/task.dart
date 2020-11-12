@@ -1,7 +1,7 @@
 class Task {
-  final String name;
-  final String description;
-  final String time;
+  String name;
+  String description;
+  String time;
   bool isDone;
 
   Task({this.name, this.description, this.time, this.isDone = false});
@@ -18,6 +18,12 @@ class Task {
       description: json['description'],
       time: json['time'],
       isDone: json['isDone']);
+
+  void editTask(String newTaskTitle, String newDescription, String newTime){
+    name = newTaskTitle;
+    description = newDescription;
+    time = newTime;
+  }
 
   void toggleDone() {
     isDone = !isDone;

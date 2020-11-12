@@ -12,7 +12,6 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
 const MethodChannel platform = MethodChannel('todoey.flutter.dev/location');
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

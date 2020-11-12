@@ -4,14 +4,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TaskDetails extends StatelessWidget {
-  final title;
-  final description;
-  final time;
+  final String title;
+  final String description;
+  final String time;
   final Function onDelete;
+  final Function onEdit;
   final Function onBack;
 
   TaskDetails(
-      {this.title, this.description, this.time, this.onDelete, this.onBack});
+      {this.title,
+      this.description,
+      this.time,
+      this.onDelete,
+      this.onEdit,
+      this.onBack});
 
   @override
   Widget build(BuildContext context) {
@@ -70,23 +76,49 @@ class TaskDetails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        time,
-                        style: GoogleFonts.merienda(fontSize: 12),
+                      Expanded(
+                        flex: 4,
+                        child: Text(
+                          time,
+                          style: GoogleFonts.merienda(fontSize: 12),
+                        ),
                       ),
-                      Card(
-                        elevation: 0.0,
-                        clipBehavior: Clip.antiAlias,
-                        shape: SquircleBorder(),
-                        color: Colors.redAccent.withOpacity(0.3),
-                        child: IconButton(
-                            tooltip: 'Delete Task',
-                            icon: Icon(Icons.delete_forever,
-                                color: Colors.redAccent),
-                            iconSize: 30.0,
-                            highlightColor: Colors.redAccent.withOpacity(0.4),
-                            splashColor: Colors.redAccent.withOpacity(0.5),
-                            onPressed: onDelete),
+                      Expanded(
+                        flex: 1,
+                        child: Card(
+                          elevation: 0.0,
+                          clipBehavior: Clip.antiAlias,
+                          shape: SquircleBorder(),
+                          color: Theme.of(context).accentColor.withOpacity(0.3),
+                          child: IconButton(
+                              tooltip: 'Edit Task',
+                              icon: FaIcon(FontAwesomeIcons.edit,
+                                  color: Theme.of(context).accentColor),
+                              highlightColor: Theme.of(context)
+                                  .accentColor
+                                  .withOpacity(0.4),
+                              splashColor: Theme.of(context)
+                                  .accentColor
+                                  .withOpacity(0.5),
+                              onPressed: onEdit),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Card(
+                          elevation: 0.0,
+                          clipBehavior: Clip.antiAlias,
+                          shape: SquircleBorder(),
+                          color: Colors.redAccent.withOpacity(0.3),
+                          child: IconButton(
+                              tooltip: 'Delete Task',
+                              icon: Icon(Icons.delete_forever,
+                                  color: Colors.redAccent),
+                              iconSize: 30.0,
+                              highlightColor: Colors.redAccent.withOpacity(0.4),
+                              splashColor: Colors.redAccent.withOpacity(0.5),
+                              onPressed: onDelete),
+                        ),
                       ),
                     ],
                   ),

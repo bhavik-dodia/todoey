@@ -1,33 +1,41 @@
 import 'package:Todoey/helpers/notification_helper.dart';
 import 'package:Todoey/models/squircle_border.dart';
+import 'package:Todoey/models/task.dart';
+import 'package:Todoey/models/task_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
-import 'package:Todoey/models/task_data.dart';
 import 'package:intl/intl.dart';
 
-class AddTask extends StatefulWidget {
+class EditTask extends StatefulWidget {
+  final Task task;
+  final int index;
+  final String title;
+  final String description;
+
+  EditTask({this.task, this.index, this.title, this.description});
+
   @override
-  _AddTaskState createState() => _AddTaskState();
+  _EditTaskState createState() => _EditTaskState();
 }
 
-class _AddTaskState extends State<AddTask> {
-  String newTaskTitle;
-  String newDescription = 'No Description';
+class _EditTaskState extends State<EditTask> {
   String reminderTime = 'No Reminder';
+
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
+
+  TextEditingController titleController;
+  TextEditingController descriptionController;
 
   bool isDesc = false;
 
   var seconds = 0;
 
   bool _decideWhichDayToEnable(DateTime day) {
-    if (day.isAfter(DateTime.now().subtract(Duration(days: 1)))) {
-      return true;
-    }
+    if (day.isAfter(DateTime.now().subtract(Duration(days: 1)))) return true;
     return false;
   }
 
@@ -64,6 +72,13 @@ class _AddTaskState extends State<AddTask> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController(text: widget.title);
+    descriptionController = TextEditingController(text: widget.description);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
@@ -75,7 +90,7 @@ class _AddTaskState extends State<AddTask> {
           right: 15.0),
       children: [
         Text(
-          'New Task',
+          'Edit Task',
           textAlign: TextAlign.center,
           style: GoogleFonts.merienda(
             fontSize: 30.0,
@@ -98,12 +113,7 @@ class _AddTaskState extends State<AddTask> {
               fontSize: 20.0,
             ),
           ),
-          onChanged: (value) {
-            if (value != null)
-              setState(() {
-                newTaskTitle = value;
-              });
-          },
+          controller: titleController,
           cursorColor: Theme.of(context).accentColor,
           textAlign: TextAlign.center,
           textCapitalization: TextCapitalization.sentences,
@@ -128,13 +138,8 @@ class _AddTaskState extends State<AddTask> {
                 fontSize: 18.0,
               ),
             ),
+            controller: descriptionController,
             cursorColor: Theme.of(context).accentColor,
-            onChanged: (value) {
-              if (value != null)
-                setState(() {
-                  newDescription = value;
-                });
-            },
             textAlign: TextAlign.left,
             maxLines: 3,
             minLines: 1,
@@ -184,49 +189,6 @@ class _AddTaskState extends State<AddTask> {
                     onPressed: () => _selectDate(context)),
               ),
             ),
-            // Card(
-            //   elevation: 0.0,
-            //   clipBehavior: Clip.antiAlias,
-            //   shape: SquircleBorder(),
-            //   color: Theme.of(context).accentColor.withOpacity(0.3),
-            //   child: IconButton(
-            //     tooltip: 'Add Task',
-            //     icon: Icon(Icons.add, color: Theme.of(context).accentColor),
-            //     highlightColor: Theme.of(context).accentColor.withOpacity(0.4),
-            //     splashColor: Theme.of(context).accentColor.withOpacity(0.5),
-            //     iconSize: 30.0,
-            //     onPressed: () {
-            //       if (newTaskTitle != null) {
-            //         if (seconds > 0) {
-            //           NotificationHelper().sendNotification(
-            //               Provider.of<TaskData>(context, listen: false)
-            //                       .tasks
-            //                       .length +
-            //                   1,
-            //               newTaskTitle,
-            //               seconds);
-            //           Toast.show('Reminder set successfully...', context,
-            //               backgroundColor: Colors.white,
-            //               textColor: Colors.black,
-            //               gravity: Toast.TOP);
-            //           reminderTime = selectedDate.toString();
-            //         }
-            //         Provider.of<TaskData>(context, listen: false).addTask(
-            //             newTaskTitle, newDescription, reminderTime);
-            //         Toast.show('Task added...', context,
-            //             backgroundColor: Colors.white,
-            //             textColor: Colors.black,
-            //             gravity: Toast.BOTTOM);
-            //         Navigator.of(context).pop();
-            //       } else {
-            //         Toast.show('Please enter a task', context,
-            //             backgroundColor: Colors.white,
-            //             textColor: Colors.black,
-            //             gravity: Toast.TOP);
-            //       }
-            //     },
-            //   ),
-            // ),
             Expanded(
               flex: 2,
               child: SizedBox(),
@@ -235,22 +197,22 @@ class _AddTaskState extends State<AddTask> {
               flex: 2,
               child: MaterialButton(
                 onPressed: () {
-                  if (newTaskTitle != null) {
+                  if (titleController.text != widget.title) {
                     if (seconds > 0) {
                       NotificationHelper().sendNotification(
-                          Provider.of<TaskData>(context, listen: false)
-                                  .taskCount +
-                              1,
-                          newTaskTitle,
-                          seconds);
+                          widget.index, titleController.text, seconds);
                       Toast.show('Reminder set successfully...', context,
                           gravity: Toast.TOP);
                       reminderTime =
                           DateFormat('EEE, MMM d hh:mm a').format(selectedDate);
                     }
-                    Provider.of<TaskData>(context, listen: false)
-                        .addTask(newTaskTitle, newDescription, reminderTime);
-                    Toast.show('Task added...', context, gravity: Toast.BOTTOM);
+                    Provider.of<TaskData>(context, listen: false).updateTask(
+                        widget.task,
+                        titleController.text,
+                        descriptionController.text,
+                        reminderTime);
+                    Toast.show('Task updated...', context,
+                        gravity: Toast.BOTTOM);
                     Navigator.of(context).pop();
                   } else {
                     Toast.show('Please enter a task', context,
@@ -266,7 +228,7 @@ class _AddTaskState extends State<AddTask> {
                 height: 53.0,
                 shape: SquircleBorder(superRadius: 15),
                 child: Text(
-                  'Add',
+                  'Edit',
                   style: GoogleFonts.merienda(
                       fontSize: 20.0, fontWeight: FontWeight.w600),
                 ),

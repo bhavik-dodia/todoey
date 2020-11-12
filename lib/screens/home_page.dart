@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:Todoey/models/app_theme.dart';
-// import 'package:Todoey/models/settings.dart';
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
