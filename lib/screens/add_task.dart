@@ -69,11 +69,17 @@ class _AddTaskState extends State<AddTask> {
       shrinkWrap: true,
       physics: BouncingScrollPhysics(),
       padding: EdgeInsets.only(
-          top: 15.0,
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-          left: 15.0,
-          right: 15.0),
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+        left: 15.0,
+        right: 15.0,
+      ),
       children: [
+        Divider(
+          height: 30.0,
+          thickness: 4.0,
+          indent: MediaQuery.of(context).size.width * 0.41,
+          endIndent: MediaQuery.of(context).size.width * 0.41,
+        ),
         Text(
           'New Task',
           textAlign: TextAlign.center,
