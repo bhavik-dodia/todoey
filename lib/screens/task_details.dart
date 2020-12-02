@@ -92,7 +92,7 @@ class TaskDetails extends StatelessWidget {
                           color: Theme.of(context).accentColor.withOpacity(0.3),
                           child: IconButton(
                               tooltip: 'Edit Task',
-                              icon: FaIcon(FontAwesomeIcons.edit,
+                              icon: FaIcon(FontAwesomeIcons.solidEdit,
                                   color: Theme.of(context).accentColor),
                               highlightColor: Theme.of(context)
                                   .accentColor
@@ -112,7 +112,7 @@ class TaskDetails extends StatelessWidget {
                           color: Colors.redAccent.withOpacity(0.3),
                           child: IconButton(
                               tooltip: 'Delete Task',
-                              icon: Icon(Icons.delete_forever,
+                              icon: Icon(Icons.delete_forever_rounded,
                                   color: Colors.redAccent),
                               iconSize: 30.0,
                               highlightColor: Colors.redAccent.withOpacity(0.4),

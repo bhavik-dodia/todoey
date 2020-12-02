@@ -13,11 +13,10 @@ class SettingsPage extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 15.0),
       physics: BouncingScrollPhysics(),
       children: [
-        Divider(
-          height: 30.0,
-          thickness: 4.0,
-          indent: MediaQuery.of(context).size.width * 0.45,
-          endIndent: MediaQuery.of(context).size.width * 0.45,
+        Icon(
+          Icons.horizontal_rule_rounded,
+          size: 40.0,
+          color: Colors.grey,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 15.0),

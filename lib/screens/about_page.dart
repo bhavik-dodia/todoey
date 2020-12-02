@@ -26,20 +26,15 @@ class AboutPage extends StatelessWidget {
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.only(
-          // top: 50,
           bottom: 15.0,
           left: 15.0,
           right: 15.0,
         ),
         children: [
-          Divider(
-            height: 30.0,
-            thickness: 4.0,
-            indent: MediaQuery.of(context).size.width * 0.41,
-            endIndent: MediaQuery.of(context).size.width * 0.41,
-          ),
-          SizedBox(
-            height: 20.0,
+          Icon(
+            Icons.horizontal_rule_rounded,
+            size: 40.0,
+            color: Colors.grey,
           ),
           Card(
             elevation: 8.0,

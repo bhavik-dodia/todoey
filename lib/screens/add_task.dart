@@ -74,11 +74,10 @@ class _AddTaskState extends State<AddTask> {
         right: 15.0,
       ),
       children: [
-        Divider(
-          height: 30.0,
-          thickness: 4.0,
-          indent: MediaQuery.of(context).size.width * 0.41,
-          endIndent: MediaQuery.of(context).size.width * 0.41,
+        Icon(
+          Icons.horizontal_rule_rounded,
+          size: 40.0,
+          color: Colors.grey,
         ),
         Text(
           'New Task',
