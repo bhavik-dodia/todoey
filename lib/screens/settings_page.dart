@@ -10,9 +10,15 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      padding: EdgeInsets.only(top: 40.0, bottom: 15.0),
+      padding: EdgeInsets.only(bottom: 15.0),
       physics: BouncingScrollPhysics(),
       children: [
+        Divider(
+          height: 30.0,
+          thickness: 4.0,
+          indent: MediaQuery.of(context).size.width * 0.45,
+          endIndent: MediaQuery.of(context).size.width * 0.45,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 15.0),
           child: Text(
@@ -48,7 +54,10 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
         ),
-        ListTile(
+        SwitchListTile.adaptive(
+          onChanged: (value) => Provider.of<TaskData>(context, listen: false)
+              .deleteOnComplete = value,
+          value: Provider.of<TaskData>(context).deleteOnComplete,
           title: Text(
             'Delete when completed',
             style: GoogleFonts.merienda(
@@ -58,12 +67,6 @@ class SettingsPage extends StatelessWidget {
           subtitle: Text(
             'Tasks will be deleted once completed',
             style: GoogleFonts.merienda(),
-          ),
-          trailing: Switch.adaptive(
-            activeColor: Theme.of(context).accentColor,
-            value: Provider.of<TaskData>(context).deleteOnComplete,
-            onChanged: (value) => Provider.of<TaskData>(context, listen: false)
-                .deleteOnComplete = value,
           ),
         ),
         Divider(indent: 10.0, endIndent: 10.0),
