@@ -49,9 +49,7 @@ class _EditTaskState extends State<EditTask> {
       selectableDayPredicate: _decideWhichDayToEnable,
     );
     if (date != null) {
-      setState(() {
-        selectedDate = date;
-      });
+      setState(() => selectedDate = date);
       _selectTime();
     }
   }
@@ -61,14 +59,13 @@ class _EditTaskState extends State<EditTask> {
       context: context,
       initialTime: selectedTime,
     );
-    if (time != null) {
+    if (time != null)
       setState(() {
         selectedTime = time;
         selectedDate = selectedDate.add(
             Duration(hours: selectedTime.hour, minutes: selectedTime.minute));
         seconds = selectedDate.difference(DateTime.now()).inSeconds;
       });
-    }
   }
 
   @override
@@ -114,17 +111,13 @@ class _EditTaskState extends State<EditTask> {
             focusedErrorBorder: InputBorder.none,
             filled: false,
             hintText: 'Enter task',
-            hintStyle: GoogleFonts.merienda(
-              fontSize: 20.0,
-            ),
+            hintStyle: GoogleFonts.merienda(fontSize: 20.0),
           ),
           controller: titleController,
           cursorColor: Theme.of(context).accentColor,
           textAlign: TextAlign.center,
           textCapitalization: TextCapitalization.sentences,
-          style: GoogleFonts.merienda(
-            fontSize: 20.0,
-          ),
+          style: GoogleFonts.merienda(fontSize: 20.0),
         ),
         Visibility(
           visible: isDesc,
@@ -139,9 +132,7 @@ class _EditTaskState extends State<EditTask> {
               focusedErrorBorder: InputBorder.none,
               filled: false,
               hintText: 'Enter task description',
-              hintStyle: GoogleFonts.merienda(
-                fontSize: 18.0,
-              ),
+              hintStyle: GoogleFonts.merienda(fontSize: 18.0),
             ),
             controller: descriptionController,
             cursorColor: Theme.of(context).accentColor,
@@ -149,9 +140,7 @@ class _EditTaskState extends State<EditTask> {
             maxLines: 3,
             minLines: 1,
             textCapitalization: TextCapitalization.sentences,
-            style: GoogleFonts.merienda(
-              fontSize: 18.0,
-            ),
+            style: GoogleFonts.merienda(fontSize: 18.0),
           ),
         ),
         Row(
@@ -166,14 +155,14 @@ class _EditTaskState extends State<EditTask> {
                 color: Theme.of(context).accentColor.withOpacity(0.3),
                 child: IconButton(
                   tooltip: 'Set Description',
-                  icon: FaIcon(FontAwesomeIcons.alignLeft,
-                      color: Theme.of(context).accentColor),
+                  icon: FaIcon(
+                    FontAwesomeIcons.alignLeft,
+                    color: Theme.of(context).accentColor,
+                  ),
                   highlightColor:
                       Theme.of(context).accentColor.withOpacity(0.4),
                   splashColor: Theme.of(context).accentColor.withOpacity(0.5),
-                  onPressed: () => setState(() {
-                    isDesc = !isDesc;
-                  }),
+                  onPressed: () => setState(() => isDesc = !isDesc),
                 ),
               ),
             ),
@@ -185,13 +174,16 @@ class _EditTaskState extends State<EditTask> {
                 shape: SquircleBorder(),
                 color: Theme.of(context).accentColor.withOpacity(0.3),
                 child: IconButton(
-                    tooltip: 'Set Reminder',
-                    icon: FaIcon(FontAwesomeIcons.calendarAlt,
-                        color: Theme.of(context).accentColor),
-                    highlightColor:
-                        Theme.of(context).accentColor.withOpacity(0.4),
-                    splashColor: Theme.of(context).accentColor.withOpacity(0.5),
-                    onPressed: () => _selectDate(context)),
+                  tooltip: 'Set Reminder',
+                  icon: FaIcon(
+                    FontAwesomeIcons.calendarAlt,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  highlightColor:
+                      Theme.of(context).accentColor.withOpacity(0.4),
+                  splashColor: Theme.of(context).accentColor.withOpacity(0.5),
+                  onPressed: () => _selectDate(context),
+                ),
               ),
             ),
             Expanded(
@@ -213,10 +205,11 @@ class _EditTaskState extends State<EditTask> {
                           DateFormat('EEE, MMM d hh:mm a').format(selectedDate);
                     }
                     Provider.of<TaskData>(context, listen: false).updateTask(
-                        widget.task,
-                        titleController.text,
-                        descriptionController.text,
-                        reminderTime);
+                      widget.task,
+                      titleController.text,
+                      descriptionController.text,
+                      reminderTime,
+                    );
                     Toast.show('Task updated...', context,
                         gravity: Toast.BOTTOM);
                     Navigator.of(context).pop();
@@ -235,15 +228,15 @@ class _EditTaskState extends State<EditTask> {
                 child: Text(
                   'Edit',
                   style: GoogleFonts.merienda(
-                      fontSize: 20.0, fontWeight: FontWeight.w600),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
           ],
         ),
-        SizedBox(
-          height: 15.0,
-        ),
+        SizedBox(height: 15.0),
       ],
     );
   }

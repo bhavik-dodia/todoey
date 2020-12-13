@@ -11,13 +11,14 @@ class TaskDetails extends StatelessWidget {
   final Function onEdit;
   final Function onBack;
 
-  TaskDetails(
-      {this.title,
-      this.description,
-      this.time,
-      this.onDelete,
-      this.onEdit,
-      this.onBack});
+  TaskDetails({
+    this.title,
+    this.description,
+    this.time,
+    this.onDelete,
+    this.onEdit,
+    this.onBack,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class TaskDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 50.0, left: 30.0, bottom: 20.0),
+            padding: const EdgeInsets.only(top: 50.0, left: 30.0, bottom: 20.0),
             child: Card(
               elevation: 8.0,
               shape: SquircleBorder(),
@@ -50,21 +51,23 @@ class TaskDetails extends StatelessWidget {
             child: Container(
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0)),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0),
+                ),
                 color: Theme.of(context).canvasColor,
               ),
               child: ListView(
-                padding: EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(15.0),
                 children: [
                   Text(
                     title,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.merienda(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).accentColor),
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).accentColor,
+                    ),
                   ),
                   SizedBox(height: 15.0),
                   Text(
@@ -91,16 +94,17 @@ class TaskDetails extends StatelessWidget {
                           shape: SquircleBorder(),
                           color: Theme.of(context).accentColor.withOpacity(0.3),
                           child: IconButton(
-                              tooltip: 'Edit Task',
-                              icon: FaIcon(FontAwesomeIcons.solidEdit,
-                                  color: Theme.of(context).accentColor),
-                              highlightColor: Theme.of(context)
-                                  .accentColor
-                                  .withOpacity(0.4),
-                              splashColor: Theme.of(context)
-                                  .accentColor
-                                  .withOpacity(0.5),
-                              onPressed: onEdit),
+                            tooltip: 'Edit Task',
+                            icon: FaIcon(
+                              FontAwesomeIcons.solidEdit,
+                              color: Theme.of(context).accentColor,
+                            ),
+                            highlightColor:
+                                Theme.of(context).accentColor.withOpacity(0.4),
+                            splashColor:
+                                Theme.of(context).accentColor.withOpacity(0.5),
+                            onPressed: onEdit,
+                          ),
                         ),
                       ),
                       Expanded(
@@ -111,13 +115,16 @@ class TaskDetails extends StatelessWidget {
                           shape: SquircleBorder(),
                           color: Colors.redAccent.withOpacity(0.3),
                           child: IconButton(
-                              tooltip: 'Delete Task',
-                              icon: Icon(Icons.delete_forever_rounded,
-                                  color: Colors.redAccent),
-                              iconSize: 30.0,
-                              highlightColor: Colors.redAccent.withOpacity(0.4),
-                              splashColor: Colors.redAccent.withOpacity(0.5),
-                              onPressed: onDelete),
+                            tooltip: 'Delete Task',
+                            icon: Icon(
+                              Icons.delete_forever_rounded,
+                              color: Colors.redAccent,
+                            ),
+                            iconSize: 30.0,
+                            highlightColor: Colors.redAccent.withOpacity(0.4),
+                            splashColor: Colors.redAccent.withOpacity(0.5),
+                            onPressed: onDelete,
+                          ),
                         ),
                       ),
                     ],

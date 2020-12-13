@@ -22,7 +22,7 @@ class TaskTile extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       onLongPress: onLongPress,
-      contentPadding: EdgeInsets.symmetric(horizontal: 30.0),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
       title: Text(
         taskTitle,
         style: GoogleFonts.merienda(

@@ -17,9 +17,7 @@ class ColorBox extends StatelessWidget {
       color: color,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () {
-          Provider.of<AppTheme>(context, listen: false).currentIndex = colorIndex;
-        },
+        onTap: () => Provider.of<AppTheme>(context, listen: false).currentIndex = colorIndex,
         child: SizedBox(
           height: 40.0,
           width: 40.0,

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:Todoey/models/app_theme.dart';
+import 'package:device_info/device_info.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter/material.dart';
@@ -11,23 +14,37 @@ import 'models/task_data.dart';
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
+final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+
 const MethodChannel platform = MethodChannel('todoey.flutter.dev/location');
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await _configureLocalTimeZone();
-
-  flutterLocalNotificationsPlugin.initialize(InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-      iOS: IOSInitializationSettings()));
-
-  runApp(MyApp());
-}
 
 Future<void> _configureLocalTimeZone() async {
   tz.initializeTimeZones();
   final String timeZoneName = await platform.invokeMethod('getTimeZoneName');
   tz.setLocalLocation(tz.getLocation(timeZoneName));
+}
+
+Future getDeviceInfo() async {
+  if (Platform.isAndroid) {
+    return await deviceInfoPlugin.androidInfo;
+  } else {
+    return await deviceInfoPlugin.iosInfo;
+  }
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await _configureLocalTimeZone();
+
+  flutterLocalNotificationsPlugin.initialize(
+    InitializationSettings(
+      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      iOS: IOSInitializationSettings(),
+    ),
+  );
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -15,14 +15,14 @@ class MenuTile extends StatelessWidget {
       decoration: BoxDecoration(
         color:
             isSelected ? Theme.of(context).accentColor.withOpacity(0.3) : null,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topRight: Radius.circular(30.0),
           bottomRight: Radius.circular(30.0),
         ),
       ),
       child: ListTile(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             topRight: Radius.circular(30.0),
             bottomRight: Radius.circular(30.0),
           ),

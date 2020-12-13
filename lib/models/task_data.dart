@@ -21,9 +21,7 @@ class TaskData extends ChangeNotifier {
     return UnmodifiableListView(_tasks);
   }
 
-  int get taskCount {
-    return _tasks.length;
-  }
+  int get taskCount => _tasks.length;
 
   void loadTasks(String res) {
     var taskObj = jsonDecode(res) as List;
@@ -31,12 +29,10 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void saveTasks() {
-    getApplicationDocumentsDirectory().then((Directory directory) {
+  void saveTasks() => getApplicationDocumentsDirectory().then((Directory directory) {
       File('${directory.path}/tasks.json')
           .writeAsStringSync(jsonEncode(_tasks));
     });
-  }
 
   void addTask(String taskTitle, String description, String time) {
     _tasks.add(Task(name: taskTitle, description: description, time: time));

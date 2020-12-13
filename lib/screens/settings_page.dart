@@ -10,7 +10,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      padding: EdgeInsets.only(bottom: 15.0),
+      padding: const EdgeInsets.only(bottom: 15.0),
       physics: BouncingScrollPhysics(),
       children: [
         Icon(
@@ -32,7 +32,7 @@ class SettingsPage extends StatelessWidget {
           height: 80.0,
           child: ListView.builder(
             shrinkWrap: true,
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemCount: Provider.of<AppTheme>(context).colors.length,

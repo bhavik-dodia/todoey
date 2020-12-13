@@ -5,29 +5,29 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:Todoey/main.dart';
 
 class NotificationHelper {
-
   Future<void> _showScheduledNotificationWithDefaultSound(
       int id, String subtitle, int time) async {
     var platformChannelSpecifics = NotificationDetails(
-        android: AndroidNotificationDetails(
-          'id',
-          'notification',
-          'task notification',
-          importance: Importance.max,
-          priority: Priority.max,
-          category: 'CATEGORY_REMINDER',
-          icon: 'appicon',
-          largeIcon: DrawableResourceAndroidBitmap('notification_icon'),
-          enableLights: true,
-          playSound: true,
-          channelShowBadge: true,
-          enableVibration: true,
-          ledColor: Colors.white,
-          ledOnMs: 1000,
-          ledOffMs: 500,
-          visibility: NotificationVisibility.secret,
-        ),
-        iOS: IOSNotificationDetails());
+      android: AndroidNotificationDetails(
+        'id',
+        'notification',
+        'task notification',
+        importance: Importance.max,
+        priority: Priority.max,
+        category: 'CATEGORY_REMINDER',
+        icon: 'appicon',
+        largeIcon: DrawableResourceAndroidBitmap('notification_icon'),
+        enableLights: true,
+        playSound: true,
+        channelShowBadge: true,
+        enableVibration: true,
+        ledColor: Colors.white,
+        ledOnMs: 1000,
+        ledOffMs: 500,
+        visibility: NotificationVisibility.secret,
+      ),
+      iOS: IOSNotificationDetails(),
+    );
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
@@ -42,7 +42,6 @@ class NotificationHelper {
     );
   }
 
-  void sendNotification(int id, String task, int t) {
-    _showScheduledNotificationWithDefaultSound(id, task, t);
-  }
+  void sendNotification(int id, String task, int t) =>
+      _showScheduledNotificationWithDefaultSound(id, task, t);
 }

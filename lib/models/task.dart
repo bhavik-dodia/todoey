@@ -10,14 +10,15 @@ class Task {
         'name': name,
         'description': description,
         'time': time,
-        'isDone': isDone
+        'isDone': isDone,
       };
 
   factory Task.fromJson(Map<String, dynamic> json) => Task(
-      name: json['name'],
-      description: json['description'],
-      time: json['time'],
-      isDone: json['isDone']);
+        name: json['name'],
+        description: json['description'],
+        time: json['time'],
+        isDone: json['isDone'],
+      );
 
   void editTask(String newTaskTitle, String newDescription, String newTime) {
     name = newTaskTitle;
@@ -25,7 +26,5 @@ class Task {
     time = newTime;
   }
 
-  void toggleDone() {
-    isDone = !isDone;
-  }
+  void toggleDone() => isDone = !isDone;
 }

@@ -22,14 +22,12 @@ class SquircleBorder extends ShapeBorder {
   }
 
   @override
-  Path getInnerPath(Rect rect, {TextDirection textDirection}) {
-    return _squirclePath(rect.deflate(side.width), superRadius);
-  }
+  Path getInnerPath(Rect rect, {TextDirection textDirection}) =>
+      _squirclePath(rect.deflate(side.width), superRadius);
 
   @override
-  Path getOuterPath(Rect rect, {TextDirection textDirection}) {
-    return _squirclePath(rect, superRadius);
-  }
+  Path getOuterPath(Rect rect, {TextDirection textDirection}) =>
+      _squirclePath(rect, superRadius);
 
   static Path _squirclePath(Rect rect, double superRadius) {
     final c = rect.center;
@@ -50,8 +48,10 @@ class SquircleBorder extends ShapeBorder {
       case BorderStyle.none:
         break;
       case BorderStyle.solid:
-        var path = getOuterPath(rect.deflate(side.width / 2.0),
-            textDirection: textDirection);
+        var path = getOuterPath(
+          rect.deflate(side.width / 2.0),
+          textDirection: textDirection,
+        );
         canvas.drawPath(path, side.toPaint());
     }
   }

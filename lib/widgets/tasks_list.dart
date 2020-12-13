@@ -72,7 +72,8 @@ class _TasksListState extends State<TasksList> {
                     transitionType: ContainerTransitionType.fadeThrough,
                     transitionDuration: const Duration(milliseconds: 300),
                     closedShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     openBuilder: (contex, closeContainer) {
                       return TaskDetails(
                         title: task.name,
@@ -82,19 +83,21 @@ class _TasksListState extends State<TasksList> {
                         onEdit: () {
                           closeContainer();
                           showModalBottomSheet(
-                              context: context,
-                              builder: (context) => EditTask(
-                                  task: task,
-                                  index: index,
-                                  title: task.name,
-                                  description: task.description),
-                              clipBehavior: Clip.antiAlias,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(30.0),
-                                    topRight: Radius.circular(30.0)),
+                            context: context,
+                            builder: (context) => EditTask(
+                                task: task,
+                                index: index,
+                                title: task.name,
+                                description: task.description),
+                            clipBehavior: Clip.antiAlias,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(30.0),
+                                topRight: Radius.circular(30.0),
                               ),
-                              isScrollControlled: true);
+                            ),
+                            isScrollControlled: true,
+                          );
                         },
                         onDelete: () {
                           taskData.deleteTask(task);

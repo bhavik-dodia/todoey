@@ -25,9 +25,7 @@ class _AddTaskState extends State<AddTask> {
   var seconds = 0;
 
   bool _decideWhichDayToEnable(DateTime day) {
-    if (day.isAfter(DateTime.now().subtract(Duration(days: 1)))) {
-      return true;
-    }
+    if (day.isAfter(DateTime.now().subtract(Duration(days: 1)))) return true;
     return false;
   }
 
@@ -41,9 +39,7 @@ class _AddTaskState extends State<AddTask> {
       selectableDayPredicate: _decideWhichDayToEnable,
     );
     if (date != null) {
-      setState(() {
-        selectedDate = date;
-      });
+      setState(() => selectedDate = date);
       _selectTime();
     }
   }
@@ -56,8 +52,10 @@ class _AddTaskState extends State<AddTask> {
     if (time != null) {
       setState(() {
         selectedTime = time;
-        selectedDate = selectedDate.add(
-            Duration(hours: selectedTime.hour, minutes: selectedTime.minute));
+        selectedDate = selectedDate.add(Duration(
+          hours: selectedTime.hour,
+          minutes: selectedTime.minute,
+        ));
         seconds = selectedDate.difference(DateTime.now()).inSeconds;
       });
     }
@@ -99,22 +97,15 @@ class _AddTaskState extends State<AddTask> {
             focusedErrorBorder: InputBorder.none,
             filled: false,
             hintText: 'Enter task',
-            hintStyle: GoogleFonts.merienda(
-              fontSize: 20.0,
-            ),
+            hintStyle: GoogleFonts.merienda(fontSize: 20.0),
           ),
           onChanged: (value) {
-            if (value != null)
-              setState(() {
-                newTaskTitle = value;
-              });
+            if (value != null) setState(() => newTaskTitle = value);
           },
           cursorColor: Theme.of(context).accentColor,
           textAlign: TextAlign.center,
           textCapitalization: TextCapitalization.sentences,
-          style: GoogleFonts.merienda(
-            fontSize: 20.0,
-          ),
+          style: GoogleFonts.merienda(fontSize: 20.0),
         ),
         Visibility(
           visible: isDesc,
@@ -129,24 +120,17 @@ class _AddTaskState extends State<AddTask> {
               focusedErrorBorder: InputBorder.none,
               filled: false,
               hintText: 'Enter task description',
-              hintStyle: GoogleFonts.merienda(
-                fontSize: 18.0,
-              ),
+              hintStyle: GoogleFonts.merienda(fontSize: 18.0),
             ),
             cursorColor: Theme.of(context).accentColor,
             onChanged: (value) {
-              if (value != null)
-                setState(() {
-                  newDescription = value;
-                });
+              if (value != null) setState(() => newDescription = value);
             },
             textAlign: TextAlign.left,
             maxLines: 3,
             minLines: 1,
             textCapitalization: TextCapitalization.sentences,
-            style: GoogleFonts.merienda(
-              fontSize: 18.0,
-            ),
+            style: GoogleFonts.merienda(fontSize: 18.0),
           ),
         ),
         Row(
@@ -161,14 +145,14 @@ class _AddTaskState extends State<AddTask> {
                 color: Theme.of(context).accentColor.withOpacity(0.3),
                 child: IconButton(
                   tooltip: 'Set Description',
-                  icon: FaIcon(FontAwesomeIcons.alignLeft,
-                      color: Theme.of(context).accentColor),
+                  icon: FaIcon(
+                    FontAwesomeIcons.alignLeft,
+                    color: Theme.of(context).accentColor,
+                  ),
                   highlightColor:
                       Theme.of(context).accentColor.withOpacity(0.4),
                   splashColor: Theme.of(context).accentColor.withOpacity(0.5),
-                  onPressed: () => setState(() {
-                    isDesc = !isDesc;
-                  }),
+                  onPressed: () => setState(() => isDesc = !isDesc),
                 ),
               ),
             ),
@@ -180,58 +164,18 @@ class _AddTaskState extends State<AddTask> {
                 shape: SquircleBorder(),
                 color: Theme.of(context).accentColor.withOpacity(0.3),
                 child: IconButton(
-                    tooltip: 'Set Reminder',
-                    icon: FaIcon(FontAwesomeIcons.calendarAlt,
-                        color: Theme.of(context).accentColor),
-                    highlightColor:
-                        Theme.of(context).accentColor.withOpacity(0.4),
-                    splashColor: Theme.of(context).accentColor.withOpacity(0.5),
-                    onPressed: () => _selectDate(context)),
+                  tooltip: 'Set Reminder',
+                  icon: FaIcon(
+                    FontAwesomeIcons.calendarAlt,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  highlightColor:
+                      Theme.of(context).accentColor.withOpacity(0.4),
+                  splashColor: Theme.of(context).accentColor.withOpacity(0.5),
+                  onPressed: () => _selectDate(context),
+                ),
               ),
             ),
-            // Card(
-            //   elevation: 0.0,
-            //   clipBehavior: Clip.antiAlias,
-            //   shape: SquircleBorder(),
-            //   color: Theme.of(context).accentColor.withOpacity(0.3),
-            //   child: IconButton(
-            //     tooltip: 'Add Task',
-            //     icon: Icon(Icons.add, color: Theme.of(context).accentColor),
-            //     highlightColor: Theme.of(context).accentColor.withOpacity(0.4),
-            //     splashColor: Theme.of(context).accentColor.withOpacity(0.5),
-            //     iconSize: 30.0,
-            //     onPressed: () {
-            //       if (newTaskTitle != null) {
-            //         if (seconds > 0) {
-            //           NotificationHelper().sendNotification(
-            //               Provider.of<TaskData>(context, listen: false)
-            //                       .tasks
-            //                       .length +
-            //                   1,
-            //               newTaskTitle,
-            //               seconds);
-            //           Toast.show('Reminder set successfully...', context,
-            //               backgroundColor: Colors.white,
-            //               textColor: Colors.black,
-            //               gravity: Toast.TOP);
-            //           reminderTime = selectedDate.toString();
-            //         }
-            //         Provider.of<TaskData>(context, listen: false).addTask(
-            //             newTaskTitle, newDescription, reminderTime);
-            //         Toast.show('Task added...', context,
-            //             backgroundColor: Colors.white,
-            //             textColor: Colors.black,
-            //             gravity: Toast.BOTTOM);
-            //         Navigator.of(context).pop();
-            //       } else {
-            //         Toast.show('Please enter a task', context,
-            //             backgroundColor: Colors.white,
-            //             textColor: Colors.black,
-            //             gravity: Toast.TOP);
-            //       }
-            //     },
-            //   ),
-            // ),
             Expanded(
               flex: 2,
               child: SizedBox(),
@@ -243,11 +187,12 @@ class _AddTaskState extends State<AddTask> {
                   if (newTaskTitle != null) {
                     if (seconds > 0) {
                       NotificationHelper().sendNotification(
-                          Provider.of<TaskData>(context, listen: false)
-                                  .taskCount +
-                              1,
-                          newTaskTitle,
-                          seconds);
+                        Provider.of<TaskData>(context, listen: false)
+                                .taskCount +
+                            1,
+                        newTaskTitle,
+                        seconds,
+                      );
                       Toast.show('Reminder set successfully...', context,
                           gravity: Toast.TOP);
                       reminderTime =
@@ -273,15 +218,15 @@ class _AddTaskState extends State<AddTask> {
                 child: Text(
                   'Add',
                   style: GoogleFonts.merienda(
-                      fontSize: 20.0, fontWeight: FontWeight.w600),
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
           ],
         ),
-        SizedBox(
-          height: 15.0,
-        ),
+        SizedBox(height: 15.0),
       ],
     );
   }

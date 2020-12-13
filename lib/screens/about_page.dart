@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:Todoey/main.dart';
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +14,7 @@ class AboutPage extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             Theme.of(context).accentColor,
-            Theme.of(context).canvasColor
+            Theme.of(context).canvasColor,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -25,7 +27,7 @@ class AboutPage extends StatelessWidget {
       child: ListView(
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           bottom: 15.0,
           left: 15.0,
           right: 15.0,
@@ -39,7 +41,8 @@ class AboutPage extends StatelessWidget {
           Card(
             elevation: 8.0,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0)),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -58,8 +61,9 @@ class AboutPage extends StatelessWidget {
                       title: Text(
                         'Todoey',
                         style: GoogleFonts.merienda(
-                            fontSize: 25.0,
-                            color: Theme.of(context).accentColor),
+                          fontSize: 25.0,
+                          color: Theme.of(context).accentColor,
+                        ),
                       ),
                       subtitle: Text(
                         '2.6.0',
@@ -71,9 +75,7 @@ class AboutPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 15.0,
-          ),
+          SizedBox(height: 15.0),
           Stack(
             children: [
               Column(
@@ -82,7 +84,8 @@ class AboutPage extends StatelessWidget {
                   Card(
                     elevation: 8.0,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
                     child: Column(
                       children: [
                         SizedBox(height: 60.0),
@@ -94,8 +97,9 @@ class AboutPage extends StatelessWidget {
                         Text(
                           'Bhavik Dodia',
                           style: GoogleFonts.merienda(
-                              fontSize: 30.0,
-                              color: Theme.of(context).accentColor),
+                            fontSize: 30.0,
+                            color: Theme.of(context).accentColor,
+                          ),
                         ),
                         SizedBox(height: 10.0),
                         Row(
@@ -152,7 +156,7 @@ class AboutPage extends StatelessWidget {
                                     Colors.pinkAccent.withOpacity(0.4),
                                 splashColor: Colors.pinkAccent.withOpacity(0.5),
                                 onPressed: () async => await launch(
-                                    'mailto:dodiabhavik.db@gmail.com'),
+                                    'mailto:dev.dodiabhavik.db@gmail.com'),
                               ),
                             ),
                             SizedBox(width: 10.0),
@@ -191,9 +195,7 @@ class AboutPage extends StatelessWidget {
                           ),
                           title: Text(
                             'Deep Gandhi',
-                            style: GoogleFonts.merienda(
-                              fontSize: 18.0,
-                            ),
+                            style: GoogleFonts.merienda(fontSize: 18.0),
                           ),
                           subtitle: Text(
                             'Designing is all about viewing the world from a different point of view, It\'s a way of looking anew, as if you have never seen it before the first time.',
@@ -291,9 +293,7 @@ class AboutPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 25.0,
-          ),
+          SizedBox(height: 25.0),
           Card(
             elevation: 8.0,
             shape: RoundedRectangleBorder(
@@ -307,7 +307,9 @@ class AboutPage extends StatelessWidget {
                   child: Text(
                     'Support',
                     style: GoogleFonts.merienda(
-                        fontSize: 18.0, color: Theme.of(context).accentColor),
+                      fontSize: 18.0,
+                      color: Theme.of(context).accentColor,
+                    ),
                   ),
                 ),
                 ListTile(
@@ -322,8 +324,10 @@ class AboutPage extends StatelessWidget {
                     'Provide feedback',
                     style: GoogleFonts.merienda(),
                   ),
-                  onTap: () async => await launch(
-                    'mailto:dodiabhavik.db@gmail.com',
+                  onTap: () async => await getDeviceInfo().then(
+                    (info) async => await launch(
+                      'mailto:dev.dodiabhavik.db@gmail.com?subject=Suggessions and Feedback&body=\n\nAdditional Info:\nApp Version: Todoey v2.6.0\nDevice: ${info.brand} ${info.model}\nDevice Codename: ${info.product}\nDevice Version: ${Platform.operatingSystem} ${info.version.release}',
+                    ),
                   ),
                 ),
                 ListTile(

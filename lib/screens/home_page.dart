@@ -143,7 +143,8 @@ class _HomePageState extends State<HomePage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            padding: EdgeInsets.only(top: 50.0, left: 30.0),
+                            padding:
+                                const EdgeInsets.only(top: 50.0, left: 30.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -159,13 +160,13 @@ class _HomePageState extends State<HomePage>
                                       onTap: manageDrawer,
                                       child: Center(
                                         child: AnimatedIcon(
-                                            icon: AnimatedIcons.menu_arrow,
-                                            progress:
-                                                Tween<double>(begin: 0, end: 1)
-                                                    .animate(_controller),
-                                            size: 30.0,
-                                            color:
-                                                Theme.of(context).accentColor),
+                                          icon: AnimatedIcons.menu_arrow,
+                                          progress:
+                                              Tween<double>(begin: 0, end: 1)
+                                                  .animate(_controller),
+                                          size: 30.0,
+                                          color: Theme.of(context).accentColor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -199,9 +200,10 @@ class _HomePageState extends State<HomePage>
                             child: Container(
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(30.0),
-                                    topRight: Radius.circular(30.0)),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(30.0),
+                                  topRight: Radius.circular(30.0),
+                                ),
                                 color: Theme.of(context).canvasColor,
                               ),
                               child: TasksList(
@@ -224,18 +226,18 @@ class _HomePageState extends State<HomePage>
                           child: FloatingActionButton(
                             shape: SquircleBorder(),
                             tooltip: 'Add New Task',
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => AddTask(),
-                                  clipBehavior: Clip.antiAlias,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(30.0),
-                                        topRight: Radius.circular(30.0)),
-                                  ),
-                                  isScrollControlled: true);
-                            },
+                            onPressed: () => showModalBottomSheet(
+                              context: context,
+                              builder: (context) => AddTask(),
+                              clipBehavior: Clip.antiAlias,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(30.0),
+                                  topRight: Radius.circular(30.0),
+                                ),
+                              ),
+                              isScrollControlled: true,
+                            ),
                             backgroundColor: Theme.of(context).accentColor,
                             splashColor: Theme.of(context).accentColor,
                             child: FaIcon(
