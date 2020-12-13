@@ -12,9 +12,9 @@
 ## 🖼 Screens
 
 | Light mode 🌞 | Dark mode 🌚 |
-| <img src="Screenshots\home.png"> | <img src="Screenshots\home_dark.png">|
-| <img src="Screenshots\menu.png"> | <img src="Screenshots\menu_dark.png">|
-| <img src="Screenshots\new_task.png"> | <img src="Screenshots\new_task_dark.png">|
-| <img src="Screenshots\details.png"> | <img src="Screenshots\details_dark.png">|
-| <img src="Screenshots\settings.png"> | <img src="Screenshots\settings_dark.png">|
-| <img src="Screenshots\about.png"> | <img src="Screenshots\about_dark.png">|
+| <img src="Screenshots\home.png"  height=50% width=50%> | <img src="Screenshots\home_dark.png"  height=50% width=50%>|
+| <img src="Screenshots\menu.png" height=50% width=50%> | <img src="Screenshots\menu_dark.png" height=50% width=50%>|
+| <img src="Screenshots\new_task.png" height=50% width=50%> | <img src="Screenshots\new_task_dark.png" height=50% width=50%>|
+| <img src="Screenshots\details.png" height=50% width=50%> | <img src="Screenshots\details_dark.png" height=50% width=50%>|
+| <img src="Screenshots\settings.png" height=50% width=50%> | <img src="Screenshots\settings_dark.png" height=50% width=50%>|
+| <img src="Screenshots\about.png" height=50% width=50%> | <img src="Screenshots\about_dark.png" height=50% width=50%>|
