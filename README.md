@@ -1,6 +1,20 @@
-# Todoey
+# 📝 Todoey
 
-Want to keep your tasks tracked?<br><br>
-Want to note down all the tasks you have to do?<br>
-No worries!! I have your back!<br><br>
 <b>Todoey is a simple To-Do App with smooth Material UI and easy to use functionalities!!</b>
+
+## 🛠 Fuctionalities included:
+
+- Add, update and remove tasks ➕ (Well, Obviously 😒)
+- Automatically delete task when completed 🗑 (Optional 🙃)
+- Customize by choosing your fevorite theme 🎨 (Oh yeah 😏)
+- Set reminders and get notified about your task 🚨 (Whoa 🤯)
+
+## 🖼 Screens
+
+| Light mode 🌞 | Dark mode 🌚 |
+| <img src="Screenshots\home.png"> | <img src="Screenshots\home_dark.png">|
+| <img src="Screenshots\menu.png"> | <img src="Screenshots\menu_dark.png">|
+| <img src="Screenshots\new_task.png"> | <img src="Screenshots\new_task_dark.png">|
+| <img src="Screenshots\details.png"> | <img src="Screenshots\details_dark.png">|
+| <img src="Screenshots\settings.png"> | <img src="Screenshots\settings_dark.png">|
+| <img src="Screenshots\about.png"> | <img src="Screenshots\about_dark.png">|
