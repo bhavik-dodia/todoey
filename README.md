@@ -4,7 +4,7 @@
 
 ## 🛠 Fuctionalities included
 
-- Add, update and remove tasks ➕ (Well, Obviously 😒)
+- Add, update and remove tasks ➕ (Well, obviously 😒)
 - Automatically delete task when completed 🗑 (Optional 🙃)
 - Customize by choosing your fevorite theme 🎨 (Oh yeah 😏)
 - Set reminders and get notified about your task 🚨 (Whoa 🤯)
