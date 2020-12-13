@@ -62,6 +62,7 @@ class AboutPage extends StatelessWidget {
                         'Todoey',
                         style: GoogleFonts.merienda(
                           fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
                           color: Theme.of(context).accentColor,
                         ),
                       ),
@@ -98,6 +99,7 @@ class AboutPage extends StatelessWidget {
                           'Bhavik Dodia',
                           style: GoogleFonts.merienda(
                             fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
                             color: Theme.of(context).accentColor,
                           ),
                         ),

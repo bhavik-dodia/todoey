@@ -18,8 +18,17 @@ class SettingsPage extends StatelessWidget {
           size: 40.0,
           color: Colors.grey,
         ),
+        Text(
+          'Settings',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.merienda(
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).accentColor,
+          ),
+        ),
         Padding(
-          padding: const EdgeInsets.only(left: 15.0),
+          padding: const EdgeInsets.only(left: 15.0, top: 10.0),
           child: Text(
             'Themes',
             style: GoogleFonts.merienda(
