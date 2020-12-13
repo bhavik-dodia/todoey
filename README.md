@@ -13,12 +13,12 @@
 
 | Light mode 🌞 | Dark mode 🌚 |
 | --------------------------------------------------------- | ------------------------------------------------------------- |
-| <img src="Screenshots\home.png" >     | <img src="Screenshots\home_dark.png" >    |
-| <img src="Screenshots\menu.png" >     | <img src="Screenshots\menu_dark.png" >    |
-| <img src="Screenshots\new_task.png" > | <img src="Screenshots\new_task_dark.png" >|
-| <img src="Screenshots\details.png" >  | <img src="Screenshots\details_dark.png" > |
-| <img src="Screenshots\settings.png" > | <img src="Screenshots\settings_dark.png" >|
-| <img src="Screenshots\about.png" >    | <img src="Screenshots\about_dark.png" >   |
+| <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/home.png?raw=true" >     | <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/home_dark.png?raw=true" >    |
+| <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/menu.png?raw=true" >     | <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/menu_dark.png?raw=true" >    |
+| <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/new_task.png?raw=true" > | <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/new_task_dark.png?raw=true" >|
+| <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/details.png?raw=true" >  | <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/details_dark.png?raw=true" > |
+| <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/settings.png?raw=true" > | <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/settings_dark.png?raw=true" >|
+| <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/about.png?raw=true" >    | <img src="https://github.com/bhavik-dodia/todoey/blob/master/screenshots/about_dark.png?raw=true" >   |
 
 ## 🎭 Contribute to this repo
 
