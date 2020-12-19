@@ -2,11 +2,11 @@
 
 **Todoey is a simple To-Do App with smooth Material UI and easy to use functionalities!!**
 
-## 🛠 Fuctionalities included
+## 🛠 Functionalities included
 
 - ➕ Add, update and remove tasks (Well, obviously 😒)
 - 🗑 Automatically delete task when completed (Optional 🙃)
-- 🎨 Customize by choosing your fevorite theme (Oh yeah 😏)
+- 🎨 Customize by choosing your favorite theme (Oh yeah 😏)
 - 🚨 Set reminders and get notified about your task (Whoa 🤯)
 
 ## 🖼 Screens
