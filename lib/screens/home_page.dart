@@ -171,15 +171,14 @@ class _HomePageState extends State<HomePage>
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
+                                SizedBox(height: 10),
                                 Text(
                                   'Todoey',
                                   style: GoogleFonts.merienda(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).canvasColor),
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).canvasColor,
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 10,
@@ -187,12 +186,11 @@ class _HomePageState extends State<HomePage>
                                 Text(
                                   '${Provider.of<TaskData>(context).tasks.length} Tasks',
                                   style: GoogleFonts.merienda(
-                                      fontSize: 16.0,
-                                      color: Theme.of(context).canvasColor),
+                                    fontSize: 16.0,
+                                    color: Theme.of(context).canvasColor,
+                                  ),
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
+                                SizedBox(height: 10),
                               ],
                             ),
                           ),
@@ -207,12 +205,10 @@ class _HomePageState extends State<HomePage>
                                 color: Theme.of(context).canvasColor,
                               ),
                               child: TasksList(
-                                onBottom: () => setState(() {
-                                  _fabController.forward();
-                                }),
-                                onTop: () => setState(() {
-                                  _fabController.reverse();
-                                }),
+                                onBottom: () =>
+                                    setState(() => _fabController.forward()),
+                                onTop: () =>
+                                    setState(() => _fabController.reverse()),
                               ),
                             ),
                           ),
