@@ -1,9 +1,10 @@
 import 'dart:io';
+
 import 'package:Todoey/main.dart';
 import 'package:Todoey/models/squircle_border.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {

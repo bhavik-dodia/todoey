@@ -1,17 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:Todoey/models/app_theme.dart';
 import 'package:Todoey/models/squircle_border.dart';
+import 'package:Todoey/models/task_data.dart';
+import 'package:Todoey/screens/add_task.dart';
+import 'package:Todoey/widgets/menu.dart';
+import 'package:Todoey/widgets/tasks_list.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:Todoey/widgets/menu.dart';
-import 'package:Todoey/widgets/tasks_list.dart';
-import 'package:Todoey/screens/add_task.dart';
-import 'package:Todoey/models/task_data.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override

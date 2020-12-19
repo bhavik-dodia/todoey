@@ -1,14 +1,15 @@
 import 'dart:io';
 
 import 'package:Todoey/models/app_theme.dart';
+import 'package:Todoey/screens/home_page.dart';
 import 'package:device_info/device_info.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
-import 'package:Todoey/screens/home_page.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
+
 import 'models/task_data.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

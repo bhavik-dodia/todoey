@@ -1,12 +1,12 @@
+import 'package:Todoey/models/task_data.dart';
 import 'package:Todoey/screens/edit_task.dart';
 import 'package:Todoey/screens/task_details.dart';
+import 'package:Todoey/widgets/task_tile.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:toast/toast.dart';
-import 'package:Todoey/models/task_data.dart';
-import 'package:Todoey/widgets/task_tile.dart';
 import 'package:provider/provider.dart';
-import 'package:animations/animations.dart';
+import 'package:toast/toast.dart';
 
 class TasksList extends StatefulWidget {
   final Function onBottom;

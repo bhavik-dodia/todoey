@@ -1,4 +1,6 @@
 import 'dart:io';
+
+import 'package:Todoey/main.dart';
 import 'package:Todoey/models/menu_item.dart';
 import 'package:Todoey/screens/about_page.dart';
 import 'package:Todoey/screens/settings_page.dart';
@@ -6,7 +8,6 @@ import 'package:Todoey/widgets/menu_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:Todoey/main.dart';
 
 class Menu extends StatelessWidget {
   final Function manageDrawer;

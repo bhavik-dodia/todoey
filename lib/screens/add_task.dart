@@ -1,12 +1,12 @@
 import 'package:Todoey/helpers/notification_helper.dart';
 import 'package:Todoey/models/squircle_border.dart';
+import 'package:Todoey/models/task_data.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
-import 'package:Todoey/models/task_data.dart';
-import 'package:intl/intl.dart';
 
 class AddTask extends StatefulWidget {
   @override
